@@ -1,0 +1,25 @@
+﻿@model Location.Domain.Entities.User
+@{
+    /**/
+
+    ViewBag.Title = "Chat";
+    Layout = "~/Views/Shared/_ChatTemplate.cshtml";
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+    var db = new LocationVoiture.Data.LocationContext();
+    var CurrentUser = db.Users.Where(x => x.UserName.Equals(User.Identity.Name)).FirstOrDefault();
+    <script>
+    var user = {
+        login: '@CurrentUser.UserName',
+        password: '@CurrentUser.Password',
+        full_name: '@CurrentUser.Name'
+    };
+    localStorage.setItem('user', JSON.stringify(user));
+
+    </script>
+
+
+}
+

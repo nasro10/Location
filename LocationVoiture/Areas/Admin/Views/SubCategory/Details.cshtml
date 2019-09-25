@@ -1,0 +1,58 @@
+﻿@model Location.Domain.Entities.SubCategory
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section class="content">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Detail of the SubCategory</h3>
+        </div>
+
+        <div class="box-body">
+            <div class="col-md-9">
+
+                <div>
+
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Name)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Subscription)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Subscription)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Active)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Active)
+                        </dd>
+
+                    </dl>
+                </div>
+
+                <div class="box-footer">
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.SubCategoryID }) |
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+@section scripts{}
+

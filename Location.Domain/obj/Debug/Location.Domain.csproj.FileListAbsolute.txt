@@ -1,0 +1,6 @@
+C:\Users\nasre\source\repos\Location\Location.Domain\bin\Debug\Location.Domain.dll
+C:\Users\nasre\source\repos\Location\Location.Domain\bin\Debug\Location.Domain.pdb
+C:\Users\nasre\source\repos\Location\Location.Domain\obj\Debug\Location.Domain.csprojAssemblyReference.cache
+C:\Users\nasre\source\repos\Location\Location.Domain\obj\Debug\Location.Domain.csproj.CoreCompileInputs.cache
+C:\Users\nasre\source\repos\Location\Location.Domain\obj\Debug\Location.Domain.dll
+C:\Users\nasre\source\repos\Location\Location.Domain\obj\Debug\Location.Domain.pdb

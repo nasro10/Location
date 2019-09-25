@@ -1,0 +1,127 @@
+﻿@model IEnumerable<Location.Domain.Entities.Car>
+
+@{
+    /**/
+
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_HomePage.cshtml";
+}
+
+@section order
+    {
+    @using (Html.BeginForm())
+    {
+        <input class="btn sorting" type="submit" value="Sort BY : " />
+        <select id="sortOrder" name="sortOrder" class="custom-select">
+
+            <option value="bypricePerhour">price per hour</option>
+            <option value="bypricePerday"> price per day</option>
+            <option value="bypricePermonth">price per day month</option>
+            <option value="byname">Model</option>
+
+        </select>
+
+
+    }
+}
+@foreach (var item in Model)
+{
+
+    <!-- Single Popular Car Start -->
+    <!-- Single Popular Car End -->
+    <div class="col-lg-4 col-md-6 @item.SubCategory.Category.Name">
+        <div class="single-popular-car">
+            <div class="car-preview-crousel">
+                @foreach (var s in item.Images)
+                {
+                    <a class="car-hover" href="~/Content/assets/img/car/@Html.DisplayFor(modelds => s.FileName)">
+                        <img src="~/Content/assets/img/car/@Html.DisplayFor(modelds => s.FileName)" alt="JSOFT">
+                    </a>
+                }
+            </div>
+
+            <div class="p-car-content">
+                <h3>
+                    <a href="#">@Html.DisplayFor(modelItem => item.CarModel.Name)</a>
+                    <span class="price"><i class="fa fa-tag"></i> @Html.DisplayFor(modelItem => item.PricePerDay)/Day</span>
+                </h3>
+
+                <h5>@Html.DisplayFor(modelItem => item.TypeCar.Name)</h5>
+
+                <div class="p-car-feature">
+                    <a href="">@Html.DisplayFor(modelItem => item.CreationYear.Name)</a>
+                    <a href="">@Html.DisplayFor(modelItem => item.Gear)</a>
+                    <a href="">@Html.DisplayFor(modelItem => item.Fuel)</a>
+                    <a href="">@Html.DisplayFor(modelItem => item.seatNumber)Seats</a>
+
+                </div>
+                <a href="~/Cars/Details/@item.CarID" class="rent-btn">Details</a>
+            </div>
+        </div>
+
+    </div>
+
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+
+
+    <script>
+
+    var config = {
+        apiKey: "AIzaSyBpOK-2o5Cs9lrdVO7_nYjFFsAhLGuVASI",
+        authDomain: "projectid.firebaseapp.com",
+        databaseURL: "https://projectid.firebaseio.com",
+        projectId: "projectid",
+        storageBucket: "projectid.appspot.com",
+        messagingSenderId: "620614048675"
+    };
+    firebase.initializeApp(config);
+
+    const messaging = firebase.messaging();
+    messaging.requestPermission().then(function () {
+        //getToken(messaging);
+        return messaging.getToken();
+    }).then(function (token) {
+        console.log(token);
+         $.ajax({
+                type: "POST",
+                url: '@Url.Action("SaveToken", "Cars")',
+                data: token ,
+
+                dataType: "json",
+                contentType: 'application/json; charset=utf-8',
+                success: function (result) {
+                    console.log(result);
+
+                }
+
+            })
+    })
+        .catch(function (err) {
+            console.log('Permission denied', err);
+        });
+
+
+    messaging.onMessage(function (payload) {
+        var data = JSON.parse(payload);
+        self.registration.showNotification(data.title, {
+            body: data.body,
+            icon: data.icon,
+            click_action: data.click_action,
+            time_to_live: data.time_to_live,
+            data: data.data,
+            tag: data.tag
+        });
+        });
+        //messaging.setBackgroundMessageHandler(function (playload) {
+        //    const title = 'Hello World';
+        //    const options = {
+        //        body: payload.data.status
+        //    };
+        //    return self.registration.showNotification(title, options);
+        //});
+    </script>
+    <!-- Single Car End -->
+}  <!-- Page Pagination Start -->

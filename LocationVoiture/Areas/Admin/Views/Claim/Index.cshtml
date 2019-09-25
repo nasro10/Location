@@ -1,0 +1,91 @@
+﻿@model IEnumerable<Location.Domain.Entities.Claims>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section class="content">
+    <p>
+        <button onclick="location.href='@Url.Action("Create","Claim")'" class="btn btn-primary">
+            <i class="fa fa-plus"></i>  Create New
+        </button>
+    </p>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Claims</h3>
+                </div>
+                <div class="box-body">
+                    <table id="example1" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Name
+                                </th>
+
+                                <th>
+                                    Title
+                                </th>
+                                <th>
+                                    ClaimDate
+                                </th>
+                                <th>
+                                    TypeClaim
+                                </th>
+                                <th>
+                                    Phone
+                                </th>
+
+                                <th>State</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.UserN)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Title)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ClaimDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TypeClaim)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Phone)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.state)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Details", "Details", new { id = item.ClaimID })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+@section scripts{
+    <script>
+    $(function () {
+        $('#example1').DataTable()
+    })
+    </script>
+}

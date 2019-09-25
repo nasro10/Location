@@ -1,0 +1,16 @@
+C:\Users\nasre\source\repos\Location\Location.Data\bin\Debug\Location.Data.dll.config
+C:\Users\nasre\source\repos\Location\Location.Data\bin\Debug\Location.Data.dll
+C:\Users\nasre\source\repos\Location\Location.Data\bin\Debug\Location.Data.pdb
+C:\Users\nasre\source\repos\Location\Location.Data\bin\Debug\EntityFramework.dll
+C:\Users\nasre\source\repos\Location\Location.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\nasre\source\repos\Location\Location.Data\bin\Debug\Location.Domain.dll
+C:\Users\nasre\source\repos\Location\Location.Data\bin\Debug\Location.Domain.pdb
+C:\Users\nasre\source\repos\Location\Location.Data\bin\Debug\EntityFramework.xml
+C:\Users\nasre\source\repos\Location\Location.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\nasre\source\repos\Location\Location.Data\bin\Debug\fr\EntityFramework.resources.dll
+C:\Users\nasre\source\repos\Location\Location.Data\bin\Debug\fr\EntityFramework.SqlServer.resources.dll
+C:\Users\nasre\source\repos\Location\Location.Data\obj\Debug\Location.Data.csprojAssemblyReference.cache
+C:\Users\nasre\source\repos\Location\Location.Data\obj\Debug\Location.Data.csproj.CoreCompileInputs.cache
+C:\Users\nasre\source\repos\Location\Location.Data\obj\Debug\Location.Data.csproj.CopyComplete
+C:\Users\nasre\source\repos\Location\Location.Data\obj\Debug\Location.Data.dll
+C:\Users\nasre\source\repos\Location\Location.Data\obj\Debug\Location.Data.pdb

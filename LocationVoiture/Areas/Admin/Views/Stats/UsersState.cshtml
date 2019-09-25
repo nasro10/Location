@@ -1,0 +1,48 @@
+﻿@model List<dynamic>
+
+@{
+    ViewBag.Title = "UsersState";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-6">
+
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Area Chart</h3>
+
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                </div>
+            </div>
+            <div class="box-body chart-responsive">
+                <div class="chart" style="height: 400px;">
+                    <div id="donut-example-2" data="@Json.Encode(Model)"></div>
+                </div>
+            </div>
+            <!-- /.box-body -->
+        </div>
+      
+    </div>
+</div>
+        @section scripts{
+            <script>
+                var elem = "donut-example-2";
+                var data = JSON.parse($("#" + elem)[0].attributes["data"].nodeValue);
+                console.log(data);
+                Morris.Donut({
+                    element: elem,
+                    data: data
+                });
+            </script>
+            <script src="~/Scripts/morris-data.js"></script>
+            <script src="~/Scripts/raphael-min.js"></script>
+            <script src="~/Scripts/morris.js"></script>
+            <script src="~/Scripts/morris.min.js"></script>
+        }
+        <hr />
+

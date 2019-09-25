@@ -1,0 +1,69 @@
+﻿@model LocationVoiture.Areas.Admin.Models.StateViewModel
+@{
+    ViewBag.Title = "CreateState";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<link rel="stylesheet" href="~/Content/bower_components/select2/dist/css/select2.min.css">
+
+<section class="content">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Add State</h3>
+        </div>
+
+        <div class="box-body">
+            <div class="col-md-9">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CountryID, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+
+                                @Html.DropDownListFor(model => model.CountryID, Model.Countries, new { @class = "test", @style = "width: 100%;"  })
+
+                                @Html.ValidationMessageFor(model => model.CountryID)
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.StateName, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.StateName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.StateName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Create" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div class="box-footer">
+                    @Html.ActionLink("Back to List", "States")
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+@section scripts{
+    <script src="~/Content/bower_components/select2/dist/js/select2.full.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.test').select2({
+                placeholder: "Select a Country",
+                allowClear: true
+            })
+        });
+    </script>
+}
+

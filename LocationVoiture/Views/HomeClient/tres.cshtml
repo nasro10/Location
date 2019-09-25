@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "tres";
+    Layout = "~/Views/Shared/_ClientLayout.cshtml";
+}
+<link rel="stylesheet" href="~/Content/bower_components/select2/dist/css/select2.min.css">
+@section scripts{
+    <script src="~/Content/bower_components/select2/dist/js/select2.full.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('.test').select2();
+        });
+    $(document).ready(function () {
+
+        $("#country").change(function () {
+            $("#State").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("getstate")',
+
+                dataType: 'json',
+
+                data: { id: $("#country").val() },
+
+
+                success: function (states) {
+
+
+                    $.each(states, function (i, state) {
+                        $("#State").append('<option value="' + state.Value + '">' +
+                             state.Text + '</option>');
+
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
+            });
+            return false;
+        })
+    });
+
+    </script>
+}
+<div style=" background-color:aqua; border-color:black; border:solid">
+
+
+    <div>
+        <b>Select Country</b>
+    </div>
+    <div>
+        @Html.DropDownList("country", ViewBag.country as List<SelectListItem>, new { @class = "test", style = "width: 200px;" })
+
+    </div>
+    <br />
+
+    <div>
+        <b>Select State</b>
+    </div>
+    <div>
+        @Html.DropDownList("State", new SelectList(string.Empty, "Value", "Text"), "--Select State--", new { style = "width:200px" })
+    </div>
+
+    <br />
+</div>

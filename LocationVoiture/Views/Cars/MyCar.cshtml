@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Location.Domain.Entities.Car>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_CarDetails.cshtml";
+}
+
+
+@foreach (var item in Model)
+{
+    <div class="col-lg-6 col-md-6">
+        <div class="single-car-wrap">
+            <div class="car-preview-crousel">
+                @foreach (var s in item.Images)
+                {
+                    <a class="car-hover" href="~/Content/assets/img/car/@Html.DisplayFor(modelds => s.FileName)">
+                        <img src="~/Content/assets/img/car/@Html.DisplayFor(modelds => s.FileName)" alt="JSOFT">
+                    </a>
+                }
+            </div>
+            <div class="car-list-info without-bar">
+                <h2>@Html.DisplayFor(modelItem => item.CarModel.Name)</h2>
+                <h3>SerialNumber: @Html.DisplayFor(modelItem => item.SerialNumber)</h3>
+                <h3> @Html.DisplayFor(modelItem => item.CreationYear.Name)</h3>
+                <h5> @Html.DisplayFor(modelItem => item.PricePerDay)/Day</h5>
+                <p>@Html.DisplayFor(modelItem => item.Note)</p>
+                <ul class="car-info-list">
+                    <li> @Html.DisplayFor(modelItem => item.Gear)</li>
+                    <li> @Html.DisplayFor(modelItem => item.Fuel)</li>
+                    <li> @Html.DisplayFor(modelItem => item.seatNumber)Seats</li>
+                </ul>
+
+                <div id="paypal-button-container">
+
+                </div>
+                <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"></script>
+                <script>
+                    // Render the PayPal button into #paypal-button-container
+                    paypal.Buttons({
+
+                        // Set up the transaction
+                        createOrder: function (data, actions) {
+                            return actions.order.create({
+                                purchase_units: [{
+                                    amount: {
+                                        value: @item.SubCategory.Subscription
+                                    }
+                                }]
+                            });
+                        },
+
+                        // Finalize the transaction
+                        onApprove: function (data, actions) {
+                            return actions.order.capture().then(function (details) {
+                                // Show a success message to the buyer
+                                alert('Transaction completed by ' + @item.User.UserName + '!');
+                            });
+                        }
+
+
+                    }).render('#paypal-button-container');
+                </script>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+<!-- Single Car End -->
+<!-- Page Pagination Start -->

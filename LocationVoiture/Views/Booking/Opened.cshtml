@@ -1,0 +1,333 @@
+﻿@model IEnumerable<Location.Domain.Entities.Booking>
+
+@{
+    ViewBag.Title = "Opened";
+    Layout = "~/Views/Shared/_HomePage.cshtml";
+}
+
+@{
+    ViewBag.Title = "RequestOnMyCars";
+    Layout = "~/Views/Shared/_ClientLayout.cshtml";
+}
+
+<div class="col-lg-4" id="test">
+    <div class="team-tab-menu">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+
+            @foreach (var item in Model)
+            {
+
+                <li class="nav-item">
+                    <a class="nav-link" id="tab_item_4" data-toggle="tab" href="#@item.BookingID" role="tab" aria-selected="true">
+                        <div class="team-mem-icon">
+                            <img src="~/Uploads/@Html.DisplayFor(modelItem => item.User.Picture)" alt="JSOFT">
+                        </div>
+                        <h5>@Html.DisplayFor(modelItem => item.User.UserName)</h5>
+                    </a>
+                </li>
+            }
+
+        </ul>
+
+    </div>
+</div>
+
+
+
+
+<div class="col-lg-8">
+    <div class="tab-content" id="myTabContent">
+        @foreach (var item in Model)
+        {
+
+            <!-- Single Team  start -->
+            <div class="tab-pane fade" id="@item.BookingID" role="tabpanel" aria-labelledby="tab_item_2">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="team-member-pro-pic">
+                            <img src="~/Uploads/@Html.DisplayFor(modelItem => item.User.Picture)" alt="JSOFT">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="team-member-info text-center">
+                            <h4>User:@Html.DisplayFor(modelItem => item.User.UserName)</h4>
+                            <h4>Car:@Html.DisplayFor(modelItem => item.Car.CarModel.Name) </h4>
+                            <h5>Send Email to:@Html.DisplayFor(modelItem => item.User.Email)</h5>
+                            <span class="quote-icon"><i class="fa fa-quote-left"></i></span>
+                            <p>
+                                <h5>Request Date: @Html.DisplayFor(modelItem => item.BookingRequestDate)</h5>
+
+                                <h5>Start Date: @Html.DisplayFor(modelItem => item.StartingFrom)</h5>
+
+                                <div class="txtCheckBox">
+                                    Driver:
+                                    @{
+
+                                        if (item.Driver)
+                                        {
+                                            <a>With Driver</a>
+                                        }
+                                        else
+                                        {
+                                            <a>WithoutDriver</a>
+                                        }
+                                    }
+                                </div>
+
+
+                                <div class="txtCheckBox">
+                                    Delivery:
+                                    @{
+
+                                        if (item.Delivery)
+                                        {
+                                            <a>With Delivery</a>
+                                        }
+                                        else
+                                        {
+                                            <a>No Delivery</a>
+                                        }
+                                    }
+                                </div>
+                                <h3>@item.bookingState</h3>
+
+                            </p>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- Single Team  End -->
+
+        }
+    </div>
+</div>
+
+
+<div class="modal fade" id="modal-ban">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Booking Confirmation</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to Accept this Booking Request?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+
+                @Html.Hidden("BookingID", "", new { @class = "hiddenid" })
+                <div class="form-actions no-color">
+                    <input type="submit" value="Accept" class="btn btn-success" onclick="Ban()" />
+                </div>
+
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+
+<div class="modal fade" id="modal-fino">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Booking Confirmation</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to Finish this Booking?</p>
+                <div class="name-input">
+                    <input type="text" name="ActivationCode" id="ActivationCode" placeholder="Activation Code">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+
+                @Html.Hidden("BookingID", "", new { @class = "hiddenid" })
+                <div class="form-actions no-color">
+                    <input type="submit" value="Accept" class="btn btn-success" onclick="fino()" />
+                </div>
+
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+
+<div class="modal fade" id="modal-done">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Booking Confirmation</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+            </div>
+            <div class="modal-body">
+               Are you sure you want to?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+
+                @Html.Hidden("BookingID", "", new { @class = "hiddenid" })
+                <div class="form-actions no-color">
+                    <input type="submit" value="Accept" class="btn btn-success" onclick="done()" />
+                </div>
+
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="modal-refuse">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Booking Confirmation</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to refuse this Booking Request?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+
+                @Html.Hidden("BookingID", "", new { @class = "hiddenid" })
+                <div class="form-actions no-color">
+                    <input type="submit" value="Refuse" class="btn btn-danger" onclick="Refuse()" />
+                </div>
+
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+
+
+@section scripts{
+    <script>
+
+    $(document).on("click", ".btn_ban", function () {
+        var passedID = $(this).data('id');
+        $(".modal-footer .hiddenid").val(passedID);
+    });
+    function Ban() {
+        var user_id = $("#BookingID").val();
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("AcceptRentRequest", "Booking")',
+                data: JSON.stringify({ id: user_id}) ,
+
+                dataType: "json",
+                contentType: 'application/json; charset=utf-8',
+                success: function (result) {
+                    console.log(result);
+                    //$(".row_" + sub_category_id).remove();
+                    window.location.reload();
+                    $('#modal-default').modal('hide');
+                }
+
+            })
+        }
+
+        $(document).on("click", ".btn_refuse", function () {
+            var passedID = $(this).data('id');
+            $(".modal-footer .hiddenid").val(passedID);
+        });
+
+        function Refuse() {
+        var user_id = $("#BookingID").val();
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("RefuseRentRequest", "Booking")',
+                data: JSON.stringify({ id: user_id}) ,
+
+                dataType: "json",
+                contentType: 'application/json; charset=utf-8',
+                success: function (result) {
+                    console.log(result);
+                    //$(".row_" + sub_category_id).remove();
+                    window.location.reload();
+                    $('#modal-default').modal('hide');
+                }
+
+            })
+        }
+
+
+        $(document).on("click", ".btn_done", function () {
+            var passedID = $(this).data('id');
+            $(".modal-footer .hiddenid").val(passedID);
+        });
+
+        function done() {
+        var user_id = $("#BookingID").val();
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("DeliverToClient", "Booking")',
+                data: JSON.stringify({ id: user_id}) ,
+
+                dataType: "json",
+                contentType: 'application/json; charset=utf-8',
+                success: function (result) {
+                    console.log(result);
+                    //$(".row_" + sub_category_id).remove();
+                    window.location.reload();
+                    $('#modal-default').modal('hide');
+                }
+
+            })
+        }
+
+          $(document).on("click", ".btn_fino", function () {
+            var passedID = $(this).data('id');
+            $(".modal-footer .hiddenid").val(passedID);
+        });
+
+        function fino() {
+        var user_id = $("#BookingID").val();
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("ConfirmedByOwner", "Booking")',
+                data: JSON.stringify({ id: user_id}) ,
+
+                dataType: "json",
+                contentType: 'application/json; charset=utf-8',
+                success: function (result) {
+                    console.log(result);
+                    //$(".row_" + sub_category_id).remove();
+                    window.location.reload();
+                    $('#modal-default').modal('hide');
+                }
+
+            })
+        }
+
+    </script>
+
+}

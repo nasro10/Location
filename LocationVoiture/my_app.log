@@ -1,0 +1,300 @@
+2019-06-20 19:29:14,608
+      [80] DEBUG PayPal.Api.PayPalResource [(null)] Content-Type:application/x-www-form-urlencoded
+2019-06-20 19:29:14,635
+      [80] DEBUG PayPal.Api.PayPalResource [(null)] User-Agent:PayPalSDK/PayPal-NET-SDK 1.9.1 (lang=DOTNET;v=4.5.1;clr=4.0.30319.42000;bit=64;os=Microsoft Windows NT 10.0.17134.0)
+2019-06-20 19:29:14,635
+      [80] DEBUG PayPal.Api.PayPalResource [(null)] Authorization:Basic QVlmcEZpeUJZYS1uNnpXaEtDRFE4R2c1b013X1V2bTNzNjNvbXREX0NRVXJCQTNSY0F6OTN6TVJBamxEXzhTZlNlWm9VUVp1a1ZzajRranE6RUkzenJ3TDdQZXEzSWI5ckkzYzdRWW8xSGNWNHlReU9oMTlRQjV5aHhKZ3hBRHo4ZEgtd3RDV2g5QTFkUFkxdzlyUUpDWmxHYlZxMktGNmQ=
+2019-06-20 19:29:14,636
+      [80] DEBUG PayPal.Api.PayPalResource [(null)] PayPal-Request-Id:db202cd1-3ec7-4959-8b2c-4cec4c19ed87
+2019-06-20 19:29:14,944
+      [80] DEBUG PayPal.Api.HttpConnection [(null)] grant_type=client_credentials
+2019-06-20 19:29:16,127
+      [80] DEBUG PayPal.Api.HttpConnection [(null)] Service response: 
+2019-06-20 19:29:16,127
+      [80] DEBUG PayPal.Api.HttpConnection [(null)] {"scope":"https://uri.paypal.com/services/invoicing https://uri.paypal.com/services/disputes/read-buyer https://uri.paypal.com/services/payments/realtimepayment https://uri.paypal.com/services/disputes/update-seller https://uri.paypal.com/services/payments/payment/authcapture openid https://uri.paypal.com/services/disputes/read-seller https://uri.paypal.com/services/payments/refund https://api.paypal.com/v1/vault/credit-card https://api.paypal.com/v1/payments/.* https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.* https://uri.paypal.com/services/subscriptions https://uri.paypal.com/services/applications/webhooks","access_token":"A21AAFoEX4pjj-Yp5753gTx0WnTxesIna5Wk5DyBEZ7fKpJ65joxjedMRqBJmmAu5Q3cFdIZpd9DrKV5PV2pI3prwMhGVjezw","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":31003,"nonce":"2019-06-20T18:05:54ZppsyHbpCoTyIkwirOl7m36IMrGus8h8eXNs8CMlH5NM"}
+2019-06-20 19:29:16,399
+      [80] DEBUG PayPal.Api.PayPalResource [(null)] Content-Type:application/json
+2019-06-20 19:29:16,399
+      [80] DEBUG PayPal.Api.PayPalResource [(null)] User-Agent:PayPalSDK/PayPal-NET-SDK 1.9.1 (lang=DOTNET;v=4.5.1;clr=4.0.30319.42000;bit=64;os=Microsoft Windows NT 10.0.17134.0)
+2019-06-20 19:29:16,399
+      [80] DEBUG PayPal.Api.PayPalResource [(null)] Authorization:Bearer A21AAFoEX4pjj-Yp5753gTx0WnTxesIna5Wk5DyBEZ7fKpJ65joxjedMRqBJmmAu5Q3cFdIZpd9DrKV5PV2pI3prwMhGVjezw
+2019-06-20 19:29:16,400
+      [80] DEBUG PayPal.Api.PayPalResource [(null)] PayPal-Request-Id:9409ac3f-d0aa-40e4-81c3-116addb9628d
+2019-06-20 19:29:16,619
+      [80] DEBUG PayPal.Api.HttpConnection [(null)] {"intent":"sale","payer":{"payment_method":"credit_card","funding_instruments":[{"credit_card":{"number":"1234567890123456","type":"visa","expire_month":1,"expire_year":2020,"cvv2":"874","first_name":"Aman","last_name":"Thakur","billing_address":{"line1":"23rd street kew gardens","city":"NewYork","country_code":"US","postal_code":"43210","state":"NY"}}}]},"transactions":[{"amount":{"currency":"USD","total":"7","details":{"subtotal":"5","shipping":"1","tax":"1"}},"description":"Description about the payment amount.","invoice_number":"your invoice number which you are generating","item_list":{"items":[{"sku":"sku","name":"Demo Item","quantity":"1","price":"5","currency":"USD"}]}}]}
+2019-06-20 19:29:17,594
+      [80] ERROR PayPal.Api.HttpConnection [(null)] Error response:
+2019-06-20 19:29:17,594
+      [80] ERROR PayPal.Api.HttpConnection [(null)] {"name":"VALIDATION_ERROR","details":[{"field":"payer.funding_instruments[0].credit_card.number","issue":"Value is invalid."}],"message":"Invalid request. See details.","information_link":"https://developer.paypal.com/docs/api/payments/#errors","debug_id":"115d9d2193ae0"}
+2019-06-20 19:29:17,594
+      [80] ERROR PayPal.Api.HttpConnection [(null)] Le serveur distant a retourné une erreur : (400) Demande incorrecte.
+2019-06-20 19:29:17,635
+      [80] ERROR PayPal.PayPalException [(null)] Payments Exception: 
+   Error:    VALIDATION_ERROR
+   Message:  Invalid request. See details.
+   URI:      https://developer.paypal.com/docs/api/payments/#errors
+   Debug ID: 115d9d2193ae0
+   Details:  payer.funding_instruments[0].credit_card.number -> Value is invalid.
+
+2019-06-20 19:41:59,417
+      [10] DEBUG PayPal.Api.PayPalResource [(null)] Content-Type:application/x-www-form-urlencoded
+2019-06-20 19:41:59,448
+      [10] DEBUG PayPal.Api.PayPalResource [(null)] User-Agent:PayPalSDK/PayPal-NET-SDK 1.9.1 (lang=DOTNET;v=4.5.1;clr=4.0.30319.42000;bit=64;os=Microsoft Windows NT 10.0.17134.0)
+2019-06-20 19:41:59,448
+      [10] DEBUG PayPal.Api.PayPalResource [(null)] Authorization:Basic QVlmcEZpeUJZYS1uNnpXaEtDRFE4R2c1b013X1V2bTNzNjNvbXREX0NRVXJCQTNSY0F6OTN6TVJBamxEXzhTZlNlWm9VUVp1a1ZzajRranE6RUkzenJ3TDdQZXEzSWI5ckkzYzdRWW8xSGNWNHlReU9oMTlRQjV5aHhKZ3hBRHo4ZEgtd3RDV2g5QTFkUFkxdzlyUUpDWmxHYlZxMktGNmQ=
+2019-06-20 19:41:59,449
+      [10] DEBUG PayPal.Api.PayPalResource [(null)] PayPal-Request-Id:bffa2290-4252-4364-99b6-6002cc89d4d4
+2019-06-20 19:41:59,856
+      [10] DEBUG PayPal.Api.HttpConnection [(null)] grant_type=client_credentials
+2019-06-20 19:42:01,186
+      [10] DEBUG PayPal.Api.HttpConnection [(null)] Service response: 
+2019-06-20 19:42:01,186
+      [10] DEBUG PayPal.Api.HttpConnection [(null)] {"scope":"https://uri.paypal.com/services/invoicing https://uri.paypal.com/services/disputes/read-buyer https://uri.paypal.com/services/payments/realtimepayment https://uri.paypal.com/services/disputes/update-seller https://uri.paypal.com/services/payments/payment/authcapture openid https://uri.paypal.com/services/disputes/read-seller https://uri.paypal.com/services/payments/refund https://api.paypal.com/v1/vault/credit-card https://api.paypal.com/v1/payments/.* https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.* https://uri.paypal.com/services/subscriptions https://uri.paypal.com/services/applications/webhooks","access_token":"A21AAFoEX4pjj-Yp5753gTx0WnTxesIna5Wk5DyBEZ7fKpJ65joxjedMRqBJmmAu5Q3cFdIZpd9DrKV5PV2pI3prwMhGVjezw","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":30238,"nonce":"2019-06-20T18:05:54ZppsyHbpCoTyIkwirOl7m36IMrGus8h8eXNs8CMlH5NM"}
+2019-06-20 19:42:16,466
+      [10] DEBUG PayPal.Api.PayPalResource [(null)] Content-Type:application/json
+2019-06-20 19:42:16,466
+      [10] DEBUG PayPal.Api.PayPalResource [(null)] User-Agent:PayPalSDK/PayPal-NET-SDK 1.9.1 (lang=DOTNET;v=4.5.1;clr=4.0.30319.42000;bit=64;os=Microsoft Windows NT 10.0.17134.0)
+2019-06-20 19:42:16,466
+      [10] DEBUG PayPal.Api.PayPalResource [(null)] Authorization:Bearer A21AAFoEX4pjj-Yp5753gTx0WnTxesIna5Wk5DyBEZ7fKpJ65joxjedMRqBJmmAu5Q3cFdIZpd9DrKV5PV2pI3prwMhGVjezw
+2019-06-20 19:42:16,467
+      [10] DEBUG PayPal.Api.PayPalResource [(null)] PayPal-Request-Id:ec2ed46f-0c7e-4873-a199-081a8ac11094
+2019-06-20 19:42:16,737
+      [10] DEBUG PayPal.Api.HttpConnection [(null)] {"intent":"sale","payer":{"payment_method":"credit_card","funding_instruments":[{"credit_card":{"number":"1234567890123456","type":"visa","expire_month":1,"expire_year":2020,"cvv2":"874","first_name":"Aman","last_name":"Thakur","billing_address":{"line1":"23rd street kew gardens","city":"NewYork","country_code":"US","postal_code":"43210","state":"NY"}}}]},"transactions":[{"amount":{"currency":"USD","total":"7","details":{"subtotal":"5","shipping":"1","tax":"1"}},"description":"Description about the payment amount.","invoice_number":"your invoice number which you are generating","item_list":{"items":[{"sku":"sku","name":"Demo Item","quantity":"1","price":"5","currency":"USD"}]}}]}
+2019-06-20 19:42:17,759
+      [10] ERROR PayPal.Api.HttpConnection [(null)] Error response:
+2019-06-20 19:42:17,760
+      [10] ERROR PayPal.Api.HttpConnection [(null)] {"name":"VALIDATION_ERROR","details":[{"field":"payer.funding_instruments[0].credit_card.number","issue":"Value is invalid."}],"message":"Invalid request. See details.","information_link":"https://developer.paypal.com/docs/api/payments/#errors","debug_id":"fb72f428c1ddd"}
+2019-06-20 19:42:17,760
+      [10] ERROR PayPal.Api.HttpConnection [(null)] Le serveur distant a retourné une erreur : (400) Demande incorrecte.
+2019-06-20 19:42:17,819
+      [10] ERROR PayPal.PayPalException [(null)] Payments Exception: 
+   Error:    VALIDATION_ERROR
+   Message:  Invalid request. See details.
+   URI:      https://developer.paypal.com/docs/api/payments/#errors
+   Debug ID: fb72f428c1ddd
+   Details:  payer.funding_instruments[0].credit_card.number -> Value is invalid.
+
+2019-06-20 19:44:17,678
+      [14] DEBUG PayPal.Api.PayPalResource [(null)] Content-Type:application/x-www-form-urlencoded
+2019-06-20 19:44:17,678
+      [14] DEBUG PayPal.Api.PayPalResource [(null)] User-Agent:PayPalSDK/PayPal-NET-SDK 1.9.1 (lang=DOTNET;v=4.5.1;clr=4.0.30319.42000;bit=64;os=Microsoft Windows NT 10.0.17134.0)
+2019-06-20 19:44:17,679
+      [14] DEBUG PayPal.Api.PayPalResource [(null)] Authorization:Basic QVlmcEZpeUJZYS1uNnpXaEtDRFE4R2c1b013X1V2bTNzNjNvbXREX0NRVXJCQTNSY0F6OTN6TVJBamxEXzhTZlNlWm9VUVp1a1ZzajRranE6RUkzenJ3TDdQZXEzSWI5ckkzYzdRWW8xSGNWNHlReU9oMTlRQjV5aHhKZ3hBRHo4ZEgtd3RDV2g5QTFkUFkxdzlyUUpDWmxHYlZxMktGNmQ=
+2019-06-20 19:44:17,679
+      [14] DEBUG PayPal.Api.PayPalResource [(null)] PayPal-Request-Id:77ffec38-cb87-49d8-bf90-11b0c9abb2bc
+2019-06-20 19:44:17,956
+      [14] DEBUG PayPal.Api.HttpConnection [(null)] grant_type=client_credentials
+2019-06-20 19:44:18,729
+      [14] DEBUG PayPal.Api.HttpConnection [(null)] Service response: 
+2019-06-20 19:44:18,729
+      [14] DEBUG PayPal.Api.HttpConnection [(null)] {"scope":"https://uri.paypal.com/services/invoicing https://uri.paypal.com/services/disputes/read-buyer https://uri.paypal.com/services/payments/realtimepayment https://uri.paypal.com/services/disputes/update-seller https://uri.paypal.com/services/payments/payment/authcapture openid https://uri.paypal.com/services/disputes/read-seller https://uri.paypal.com/services/payments/refund https://api.paypal.com/v1/vault/credit-card https://api.paypal.com/v1/payments/.* https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.* https://uri.paypal.com/services/subscriptions https://uri.paypal.com/services/applications/webhooks","access_token":"A21AAFoEX4pjj-Yp5753gTx0WnTxesIna5Wk5DyBEZ7fKpJ65joxjedMRqBJmmAu5Q3cFdIZpd9DrKV5PV2pI3prwMhGVjezw","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":30100,"nonce":"2019-06-20T18:05:54ZppsyHbpCoTyIkwirOl7m36IMrGus8h8eXNs8CMlH5NM"}
+2019-06-20 19:44:22,411
+      [14] DEBUG PayPal.Api.PayPalResource [(null)] Content-Type:application/json
+2019-06-20 19:44:22,412
+      [14] DEBUG PayPal.Api.PayPalResource [(null)] User-Agent:PayPalSDK/PayPal-NET-SDK 1.9.1 (lang=DOTNET;v=4.5.1;clr=4.0.30319.42000;bit=64;os=Microsoft Windows NT 10.0.17134.0)
+2019-06-20 19:44:22,412
+      [14] DEBUG PayPal.Api.PayPalResource [(null)] Authorization:Bearer A21AAFoEX4pjj-Yp5753gTx0WnTxesIna5Wk5DyBEZ7fKpJ65joxjedMRqBJmmAu5Q3cFdIZpd9DrKV5PV2pI3prwMhGVjezw
+2019-06-20 19:44:22,412
+      [14] DEBUG PayPal.Api.PayPalResource [(null)] PayPal-Request-Id:ccaf6d3e-a1e8-445f-ab67-95dd576137f7
+2019-06-20 19:44:22,631
+      [14] DEBUG PayPal.Api.HttpConnection [(null)] {"intent":"sale","payer":{"payment_method":"paypal"},"transactions":[{"amount":{"currency":"USD","total":"7","details":{"subtotal":"5","shipping":"1","tax":"1"}},"description":"Transaction description.","invoice_number":"your invoice number","item_list":{"items":[{"sku":"sku","name":"Item Name","quantity":"1","price":"5","currency":"USD"}]}}],"redirect_urls":{"return_url":"http://localhost:51155/Paypal/PaymentWithPayPal?guid=11114","cancel_url":"http://localhost:51155/Paypal/PaymentWithPayPal?guid=11114"}}
+2019-06-20 19:44:23,830
+      [14] DEBUG PayPal.Api.HttpConnection [(null)] Service response: 
+2019-06-20 19:44:23,830
+      [14] DEBUG PayPal.Api.HttpConnection [(null)] {"id":"PAYID-LUF5IAY1S598975UR891880G","intent":"sale","state":"created","payer":{"payment_method":"paypal"},"transactions":[{"amount":{"total":"7.00","currency":"USD","details":{"subtotal":"5.00","tax":"1.00","shipping":"1.00"}},"description":"Transaction description.","invoice_number":"your invoice number","item_list":{"items":[{"name":"Item Name","sku":"sku","price":"5.00","currency":"USD","quantity":1}]},"related_resources":[]}],"create_time":"2019-06-20T18:44:18Z","links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payment/PAYID-LUF5IAY1S598975UR891880G","rel":"self","method":"GET"},{"href":"https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-6WJ67939G2526482G","rel":"approval_url","method":"REDIRECT"},{"href":"https://api.sandbox.paypal.com/v1/payments/payment/PAYID-LUF5IAY1S598975UR891880G/execute","rel":"execute","method":"POST"}]}
+2019-06-20 19:45:24,577
+      [10] DEBUG PayPal.Api.PayPalResource [(null)] Content-Type:application/x-www-form-urlencoded
+2019-06-20 19:45:24,578
+      [10] DEBUG PayPal.Api.PayPalResource [(null)] User-Agent:PayPalSDK/PayPal-NET-SDK 1.9.1 (lang=DOTNET;v=4.5.1;clr=4.0.30319.42000;bit=64;os=Microsoft Windows NT 10.0.17134.0)
+2019-06-20 19:45:24,578
+      [10] DEBUG PayPal.Api.PayPalResource [(null)] Authorization:Basic QVlmcEZpeUJZYS1uNnpXaEtDRFE4R2c1b013X1V2bTNzNjNvbXREX0NRVXJCQTNSY0F6OTN6TVJBamxEXzhTZlNlWm9VUVp1a1ZzajRranE6RUkzenJ3TDdQZXEzSWI5ckkzYzdRWW8xSGNWNHlReU9oMTlRQjV5aHhKZ3hBRHo4ZEgtd3RDV2g5QTFkUFkxdzlyUUpDWmxHYlZxMktGNmQ=
+2019-06-20 19:45:24,579
+      [10] DEBUG PayPal.Api.PayPalResource [(null)] PayPal-Request-Id:7b982b6e-822d-4402-acb0-83b6dd07f8f2
+2019-06-20 19:45:24,897
+      [10] DEBUG PayPal.Api.HttpConnection [(null)] grant_type=client_credentials
+2019-06-20 19:45:25,865
+      [10] DEBUG PayPal.Api.HttpConnection [(null)] Service response: 
+2019-06-20 19:45:25,866
+      [10] DEBUG PayPal.Api.HttpConnection [(null)] {"scope":"https://uri.paypal.com/services/invoicing https://uri.paypal.com/services/disputes/read-buyer https://uri.paypal.com/services/payments/realtimepayment https://uri.paypal.com/services/disputes/update-seller https://uri.paypal.com/services/payments/payment/authcapture openid https://uri.paypal.com/services/disputes/read-seller https://uri.paypal.com/services/payments/refund https://api.paypal.com/v1/vault/credit-card https://api.paypal.com/v1/payments/.* https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.* https://uri.paypal.com/services/subscriptions https://uri.paypal.com/services/applications/webhooks","access_token":"A21AAFoEX4pjj-Yp5753gTx0WnTxesIna5Wk5DyBEZ7fKpJ65joxjedMRqBJmmAu5Q3cFdIZpd9DrKV5PV2pI3prwMhGVjezw","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":30033,"nonce":"2019-06-20T18:05:54ZppsyHbpCoTyIkwirOl7m36IMrGus8h8eXNs8CMlH5NM"}
+2019-06-20 19:45:25,866
+      [10] DEBUG PayPal.Api.PayPalResource [(null)] Content-Type:application/json
+2019-06-20 19:45:25,867
+      [10] DEBUG PayPal.Api.PayPalResource [(null)] User-Agent:PayPalSDK/PayPal-NET-SDK 1.9.1 (lang=DOTNET;v=4.5.1;clr=4.0.30319.42000;bit=64;os=Microsoft Windows NT 10.0.17134.0)
+2019-06-20 19:45:25,867
+      [10] DEBUG PayPal.Api.PayPalResource [(null)] Authorization:Bearer A21AAFoEX4pjj-Yp5753gTx0WnTxesIna5Wk5DyBEZ7fKpJ65joxjedMRqBJmmAu5Q3cFdIZpd9DrKV5PV2pI3prwMhGVjezw
+2019-06-20 19:45:25,867
+      [10] DEBUG PayPal.Api.PayPalResource [(null)] PayPal-Request-Id:4d92b466-b348-4bc6-b1e0-508cbcf03dc7
+2019-06-20 19:45:26,155
+      [10] DEBUG PayPal.Api.HttpConnection [(null)] {"intent":"sale","payer":{"payment_method":"paypal"},"transactions":[{"amount":{"currency":"USD","total":"7","details":{"subtotal":"5","shipping":"1","tax":"1"}},"description":"Transaction description.","invoice_number":"your invoice number","item_list":{"items":[{"sku":"sku","name":"Item Name","quantity":"1","price":"5","currency":"USD"}]}}],"redirect_urls":{"return_url":"http://localhost:51155/Paypal/PaymentWithPayPal?guid=56460","cancel_url":"http://localhost:51155/Paypal/PaymentWithPayPal?guid=56460"}}
+2019-06-20 19:45:27,463
+      [10] DEBUG PayPal.Api.HttpConnection [(null)] Service response: 
+2019-06-20 19:45:27,464
+      [10] DEBUG PayPal.Api.HttpConnection [(null)] {"id":"PAYID-LUF5IQQ5V071835UR322894B","intent":"sale","state":"created","payer":{"payment_method":"paypal"},"transactions":[{"amount":{"total":"7.00","currency":"USD","details":{"subtotal":"5.00","tax":"1.00","shipping":"1.00"}},"description":"Transaction description.","invoice_number":"your invoice number","item_list":{"items":[{"name":"Item Name","sku":"sku","price":"5.00","currency":"USD","quantity":1}]},"related_resources":[]}],"create_time":"2019-06-20T18:45:22Z","links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payment/PAYID-LUF5IQQ5V071835UR322894B","rel":"self","method":"GET"},{"href":"https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-86136998WP045734D","rel":"approval_url","method":"REDIRECT"},{"href":"https://api.sandbox.paypal.com/v1/payments/payment/PAYID-LUF5IQQ5V071835UR322894B/execute","rel":"execute","method":"POST"}]}
+2019-06-20 19:46:45,859
+      [10] DEBUG PayPal.Api.PayPalResource [(null)] Content-Type:application/x-www-form-urlencoded
+2019-06-20 19:46:45,860
+      [10] DEBUG PayPal.Api.PayPalResource [(null)] User-Agent:PayPalSDK/PayPal-NET-SDK 1.9.1 (lang=DOTNET;v=4.5.1;clr=4.0.30319.42000;bit=64;os=Microsoft Windows NT 10.0.17134.0)
+2019-06-20 19:46:45,860
+      [10] DEBUG PayPal.Api.PayPalResource [(null)] Authorization:Basic QVlmcEZpeUJZYS1uNnpXaEtDRFE4R2c1b013X1V2bTNzNjNvbXREX0NRVXJCQTNSY0F6OTN6TVJBamxEXzhTZlNlWm9VUVp1a1ZzajRranE6RUkzenJ3TDdQZXEzSWI5ckkzYzdRWW8xSGNWNHlReU9oMTlRQjV5aHhKZ3hBRHo4ZEgtd3RDV2g5QTFkUFkxdzlyUUpDWmxHYlZxMktGNmQ=
+2019-06-20 19:46:45,860
+      [10] DEBUG PayPal.Api.PayPalResource [(null)] PayPal-Request-Id:52b61e44-b781-4185-9271-480294065b2c
+2019-06-20 19:46:46,098
+      [10] DEBUG PayPal.Api.HttpConnection [(null)] grant_type=client_credentials
+2019-06-20 19:46:46,827
+      [10] DEBUG PayPal.Api.HttpConnection [(null)] Service response: 
+2019-06-20 19:46:46,828
+      [10] DEBUG PayPal.Api.HttpConnection [(null)] {"scope":"https://uri.paypal.com/services/invoicing https://uri.paypal.com/services/disputes/read-buyer https://uri.paypal.com/services/payments/realtimepayment https://uri.paypal.com/services/disputes/update-seller https://uri.paypal.com/services/payments/payment/authcapture openid https://uri.paypal.com/services/disputes/read-seller https://uri.paypal.com/services/payments/refund https://api.paypal.com/v1/vault/credit-card https://api.paypal.com/v1/payments/.* https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.* https://uri.paypal.com/services/subscriptions https://uri.paypal.com/services/applications/webhooks","access_token":"A21AAFoEX4pjj-Yp5753gTx0WnTxesIna5Wk5DyBEZ7fKpJ65joxjedMRqBJmmAu5Q3cFdIZpd9DrKV5PV2pI3prwMhGVjezw","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":29952,"nonce":"2019-06-20T18:05:54ZppsyHbpCoTyIkwirOl7m36IMrGus8h8eXNs8CMlH5NM"}
+2019-06-20 19:46:46,829
+      [10] DEBUG PayPal.Api.PayPalResource [(null)] Content-Type:application/json
+2019-06-20 19:46:46,829
+      [10] DEBUG PayPal.Api.PayPalResource [(null)] User-Agent:PayPalSDK/PayPal-NET-SDK 1.9.1 (lang=DOTNET;v=4.5.1;clr=4.0.30319.42000;bit=64;os=Microsoft Windows NT 10.0.17134.0)
+2019-06-20 19:46:46,830
+      [10] DEBUG PayPal.Api.PayPalResource [(null)] Authorization:Bearer A21AAFoEX4pjj-Yp5753gTx0WnTxesIna5Wk5DyBEZ7fKpJ65joxjedMRqBJmmAu5Q3cFdIZpd9DrKV5PV2pI3prwMhGVjezw
+2019-06-20 19:46:46,830
+      [10] DEBUG PayPal.Api.PayPalResource [(null)] PayPal-Request-Id:7f007852-9ea3-466c-9644-26085e2194b2
+2019-06-20 19:46:47,048
+      [10] DEBUG PayPal.Api.HttpConnection [(null)] {"intent":"sale","payer":{"payment_method":"paypal"},"transactions":[{"amount":{"currency":"USD","total":"7","details":{"subtotal":"5","shipping":"1","tax":"1"}},"description":"Transaction description.","invoice_number":"your invoice number","item_list":{"items":[{"sku":"sku","name":"Item Name","quantity":"1","price":"5","currency":"USD"}]}}],"redirect_urls":{"return_url":"http://localhost:51155/Paypal/PaymentWithPayPal?guid=98349","cancel_url":"http://localhost:51155/Paypal/PaymentWithPayPal?guid=98349"}}
+2019-06-20 19:46:48,374
+      [10] DEBUG PayPal.Api.HttpConnection [(null)] Service response: 
+2019-06-20 19:46:48,375
+      [10] DEBUG PayPal.Api.HttpConnection [(null)] {"id":"PAYID-LUF5JEY8UT18348FU7311708","intent":"sale","state":"created","payer":{"payment_method":"paypal"},"transactions":[{"amount":{"total":"7.00","currency":"USD","details":{"subtotal":"5.00","tax":"1.00","shipping":"1.00"}},"description":"Transaction description.","invoice_number":"your invoice number","item_list":{"items":[{"name":"Item Name","sku":"sku","price":"5.00","currency":"USD","quantity":1}]},"related_resources":[]}],"create_time":"2019-06-20T18:46:43Z","links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payment/PAYID-LUF5JEY8UT18348FU7311708","rel":"self","method":"GET"},{"href":"https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-3YN926355H1427436","rel":"approval_url","method":"REDIRECT"},{"href":"https://api.sandbox.paypal.com/v1/payments/payment/PAYID-LUF5JEY8UT18348FU7311708/execute","rel":"execute","method":"POST"}]}
+2019-06-20 19:56:05,213
+      [7] DEBUG PayPal.Api.PayPalResource [(null)] Content-Type:application/x-www-form-urlencoded
+2019-06-20 19:56:05,245
+      [7] DEBUG PayPal.Api.PayPalResource [(null)] User-Agent:PayPalSDK/PayPal-NET-SDK 1.9.1 (lang=DOTNET;v=4.5.1;clr=4.0.30319.42000;bit=64;os=Microsoft Windows NT 10.0.17134.0)
+2019-06-20 19:56:05,245
+      [7] DEBUG PayPal.Api.PayPalResource [(null)] Authorization:Basic QVVIS3BBSHV4OG1rQy1GaFFWZzZ1OGViWHF6ZGxqRm1aSlFpQnY2c0NwVEVyN1d0c1o1VDhkU29tWG5mNE1BNGc4Qlg5SGNzSFdsRS1ZeG06RUcwQmtzNFBkM05JUjBLNGZ4VkZ0NkZVcTNMWnN6OXFJVlA1bjd0a2tUcXNuNVhxd3RMQ29EMmFQTndWZjJvengxcTk0Y24weVMtNFB4RWY=
+2019-06-20 19:56:05,245
+      [7] DEBUG PayPal.Api.PayPalResource [(null)] PayPal-Request-Id:69c861db-bbf8-4681-a96f-205b16a0a114
+2019-06-20 19:56:05,547
+      [7] DEBUG PayPal.Api.HttpConnection [(null)] grant_type=client_credentials
+2019-06-20 19:56:06,943
+      [7] DEBUG PayPal.Api.HttpConnection [(null)] Service response: 
+2019-06-20 19:56:06,943
+      [7] DEBUG PayPal.Api.HttpConnection [(null)] {"scope":"https://uri.paypal.com/services/invoicing https://uri.paypal.com/services/disputes/read-buyer https://uri.paypal.com/services/payments/realtimepayment https://uri.paypal.com/services/disputes/update-seller openid https://uri.paypal.com/services/payments/payment/authcapture https://uri.paypal.com/services/disputes/read-seller https://uri.paypal.com/services/payments/refund https://api.paypal.com/v1/vault/credit-card https://api.paypal.com/v1/payments/.* https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.* https://uri.paypal.com/services/subscriptions https://uri.paypal.com/services/applications/webhooks","access_token":"A21AAHo4uAsoFuMF1gBH5woeBojyL7_iB1WnyTh2NWgVMXfgKmQwUPiCz1oE3J3i2QRO_nUVoQPHQEGKTBSIH_-dmmT79EncA","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":32400,"nonce":"2019-06-20T18:56:02Z0dPUpBgF6OQn3ZKf6BdwaYXd-vAk4QkGAaLbyPFwhZA"}
+2019-06-20 19:56:07,264
+      [7] DEBUG PayPal.Api.PayPalResource [(null)] Content-Type:application/json
+2019-06-20 19:56:07,265
+      [7] DEBUG PayPal.Api.PayPalResource [(null)] User-Agent:PayPalSDK/PayPal-NET-SDK 1.9.1 (lang=DOTNET;v=4.5.1;clr=4.0.30319.42000;bit=64;os=Microsoft Windows NT 10.0.17134.0)
+2019-06-20 19:56:07,265
+      [7] DEBUG PayPal.Api.PayPalResource [(null)] Authorization:Bearer A21AAHo4uAsoFuMF1gBH5woeBojyL7_iB1WnyTh2NWgVMXfgKmQwUPiCz1oE3J3i2QRO_nUVoQPHQEGKTBSIH_-dmmT79EncA
+2019-06-20 19:56:07,265
+      [7] DEBUG PayPal.Api.PayPalResource [(null)] PayPal-Request-Id:b8100198-401c-48b8-ba68-5eb40a12a1bc
+2019-06-20 19:56:07,490
+      [7] DEBUG PayPal.Api.HttpConnection [(null)] {"intent":"sale","payer":{"payment_method":"paypal"},"transactions":[{"amount":{"currency":"USD","total":"7","details":{"subtotal":"5","shipping":"1","tax":"1"}},"description":"Transaction description.","invoice_number":"your invoice number","item_list":{"items":[{"sku":"sku","name":"Item Name","quantity":"1","price":"5","currency":"USD"}]}}],"redirect_urls":{"return_url":"http://localhost:51155/Paypal/PaymentWithPayPal?guid=40696","cancel_url":"http://localhost:51155/Paypal/PaymentWithPayPal?guid=40696"}}
+2019-06-20 19:56:08,841
+      [7] DEBUG PayPal.Api.HttpConnection [(null)] Service response: 
+2019-06-20 19:56:08,842
+      [7] DEBUG PayPal.Api.HttpConnection [(null)] {"id":"PAYID-LUF5NRA1V960531E0022182K","intent":"sale","state":"created","payer":{"payment_method":"paypal"},"transactions":[{"amount":{"total":"7.00","currency":"USD","details":{"subtotal":"5.00","tax":"1.00","shipping":"1.00"}},"description":"Transaction description.","invoice_number":"your invoice number","item_list":{"items":[{"name":"Item Name","sku":"sku","price":"5.00","currency":"USD","quantity":1}]},"related_resources":[]}],"create_time":"2019-06-20T18:56:03Z","links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payment/PAYID-LUF5NRA1V960531E0022182K","rel":"self","method":"GET"},{"href":"https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-6XA32160PS585704V","rel":"approval_url","method":"REDIRECT"},{"href":"https://api.sandbox.paypal.com/v1/payments/payment/PAYID-LUF5NRA1V960531E0022182K/execute","rel":"execute","method":"POST"}]}
+2019-06-20 20:00:47,730
+      [7] DEBUG PayPal.Api.PayPalResource [(null)] Content-Type:application/x-www-form-urlencoded
+2019-06-20 20:00:47,757
+      [7] DEBUG PayPal.Api.PayPalResource [(null)] User-Agent:PayPalSDK/PayPal-NET-SDK 1.9.1 (lang=DOTNET;v=4.5.1;clr=4.0.30319.42000;bit=64;os=Microsoft Windows NT 10.0.17134.0)
+2019-06-20 20:00:47,758
+      [7] DEBUG PayPal.Api.PayPalResource [(null)] Authorization:Basic QVVIS3BBSHV4OG1rQy1GaFFWZzZ1OGViWHF6ZGxqRm1aSlFpQnY2c0NwVEVyN1d0c1o1VDhkU29tWG5mNE1BNGc4Qlg5SGNzSFdsRS1ZeG06RUcwQmtzNFBkM05JUjBLNGZ4VkZ0NkZVcTNMWnN6OXFJVlA1bjd0a2tUcXNuNVhxd3RMQ29EMmFQTndWZjJvengxcTk0Y24weVMtNFB4RWY=
+2019-06-20 20:00:47,758
+      [7] DEBUG PayPal.Api.PayPalResource [(null)] PayPal-Request-Id:d88c85bf-711c-4efa-a053-095148d85c63
+2019-06-20 20:00:48,087
+      [7] DEBUG PayPal.Api.HttpConnection [(null)] grant_type=client_credentials
+2019-06-20 20:00:49,536
+      [7] DEBUG PayPal.Api.HttpConnection [(null)] Service response: 
+2019-06-20 20:00:49,536
+      [7] DEBUG PayPal.Api.HttpConnection [(null)] {"scope":"https://uri.paypal.com/services/invoicing https://uri.paypal.com/services/disputes/read-buyer https://uri.paypal.com/services/payments/realtimepayment https://uri.paypal.com/services/disputes/update-seller openid https://uri.paypal.com/services/payments/payment/authcapture https://uri.paypal.com/services/disputes/read-seller https://uri.paypal.com/services/payments/refund https://api.paypal.com/v1/vault/credit-card https://api.paypal.com/v1/payments/.* https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.* https://uri.paypal.com/services/subscriptions https://uri.paypal.com/services/applications/webhooks","access_token":"A21AAE3gDl6rLmRcH7YiXz-D0X8BfZ_JJbFXIz5T7b0BohOyWbeyTX3ep-7owzjcOjOAaoAFTDTkNe3HcFSEnvAkbiOligRNw","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":32400,"nonce":"2019-06-20T19:00:44Z8QpD9UcTzcuh99MMF2LxES52muyMKbauzvTW5eHhGPA"}
+2019-06-20 20:00:49,842
+      [7] DEBUG PayPal.Api.PayPalResource [(null)] Content-Type:application/json
+2019-06-20 20:00:49,842
+      [7] DEBUG PayPal.Api.PayPalResource [(null)] User-Agent:PayPalSDK/PayPal-NET-SDK 1.9.1 (lang=DOTNET;v=4.5.1;clr=4.0.30319.42000;bit=64;os=Microsoft Windows NT 10.0.17134.0)
+2019-06-20 20:00:49,842
+      [7] DEBUG PayPal.Api.PayPalResource [(null)] Authorization:Bearer A21AAE3gDl6rLmRcH7YiXz-D0X8BfZ_JJbFXIz5T7b0BohOyWbeyTX3ep-7owzjcOjOAaoAFTDTkNe3HcFSEnvAkbiOligRNw
+2019-06-20 20:00:49,842
+      [7] DEBUG PayPal.Api.PayPalResource [(null)] PayPal-Request-Id:caaed9d1-27ad-4301-a84c-950b36a56c32
+2019-06-20 20:00:50,060
+      [7] DEBUG PayPal.Api.HttpConnection [(null)] {"intent":"sale","payer":{"payment_method":"paypal"},"transactions":[{"amount":{"currency":"USD","total":"3","details":{"subtotal":"1","shipping":"1","tax":"1"}},"description":"Transaction description","invoice_number":"your invoice number","item_list":{"items":[{"sku":"sku","name":"Item Name comes here","quantity":"1","price":"1","currency":"USD"}]}}],"redirect_urls":{"return_url":"http://localhost:51155/Paypal/PaymentWithPayPal?guid=66619","cancel_url":"http://localhost:51155/Paypal/PaymentWithPayPal?guid=66619&Cancel=true"}}
+2019-06-20 20:00:51,374
+      [7] DEBUG PayPal.Api.HttpConnection [(null)] Service response: 
+2019-06-20 20:00:51,374
+      [7] DEBUG PayPal.Api.HttpConnection [(null)] {"id":"PAYID-LUF5PXQ4VU50271RK843924N","intent":"sale","state":"created","payer":{"payment_method":"paypal"},"transactions":[{"amount":{"total":"3.00","currency":"USD","details":{"subtotal":"1.00","tax":"1.00","shipping":"1.00"}},"description":"Transaction description","invoice_number":"your invoice number","item_list":{"items":[{"name":"Item Name comes here","sku":"sku","price":"1.00","currency":"USD","quantity":1}]},"related_resources":[]}],"create_time":"2019-06-20T19:00:46Z","links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payment/PAYID-LUF5PXQ4VU50271RK843924N","rel":"self","method":"GET"},{"href":"https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-6J466196X20345255","rel":"approval_url","method":"REDIRECT"},{"href":"https://api.sandbox.paypal.com/v1/payments/payment/PAYID-LUF5PXQ4VU50271RK843924N/execute","rel":"execute","method":"POST"}]}
+2019-06-20 20:01:55,278
+      [8] DEBUG PayPal.Api.PayPalResource [(null)] Content-Type:application/x-www-form-urlencoded
+2019-06-20 20:01:55,280
+      [8] DEBUG PayPal.Api.PayPalResource [(null)] User-Agent:PayPalSDK/PayPal-NET-SDK 1.9.1 (lang=DOTNET;v=4.5.1;clr=4.0.30319.42000;bit=64;os=Microsoft Windows NT 10.0.17134.0)
+2019-06-20 20:01:55,281
+      [8] DEBUG PayPal.Api.PayPalResource [(null)] Authorization:Basic QVVIS3BBSHV4OG1rQy1GaFFWZzZ1OGViWHF6ZGxqRm1aSlFpQnY2c0NwVEVyN1d0c1o1VDhkU29tWG5mNE1BNGc4Qlg5SGNzSFdsRS1ZeG06RUcwQmtzNFBkM05JUjBLNGZ4VkZ0NkZVcTNMWnN6OXFJVlA1bjd0a2tUcXNuNVhxd3RMQ29EMmFQTndWZjJvengxcTk0Y24weVMtNFB4RWY=
+2019-06-20 20:01:55,281
+      [8] DEBUG PayPal.Api.PayPalResource [(null)] PayPal-Request-Id:b1253b93-7fb8-4c97-9183-80b619e8547c
+2019-06-20 20:01:55,507
+      [8] DEBUG PayPal.Api.HttpConnection [(null)] grant_type=client_credentials
+2019-06-20 20:01:56,224
+      [8] DEBUG PayPal.Api.HttpConnection [(null)] Service response: 
+2019-06-20 20:01:56,225
+      [8] DEBUG PayPal.Api.HttpConnection [(null)] {"scope":"https://uri.paypal.com/services/invoicing https://uri.paypal.com/services/disputes/read-buyer https://uri.paypal.com/services/payments/realtimepayment https://uri.paypal.com/services/disputes/update-seller openid https://uri.paypal.com/services/payments/payment/authcapture https://uri.paypal.com/services/disputes/read-seller https://uri.paypal.com/services/payments/refund https://api.paypal.com/v1/vault/credit-card https://api.paypal.com/v1/payments/.* https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.* https://uri.paypal.com/services/subscriptions https://uri.paypal.com/services/applications/webhooks","access_token":"A21AAE3gDl6rLmRcH7YiXz-D0X8BfZ_JJbFXIz5T7b0BohOyWbeyTX3ep-7owzjcOjOAaoAFTDTkNe3HcFSEnvAkbiOligRNw","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":32333,"nonce":"2019-06-20T19:00:44Z8QpD9UcTzcuh99MMF2LxES52muyMKbauzvTW5eHhGPA"}
+2019-06-20 20:01:56,226
+      [8] DEBUG PayPal.Api.PayPalResource [(null)] Content-Type:application/json
+2019-06-20 20:01:56,226
+      [8] DEBUG PayPal.Api.PayPalResource [(null)] User-Agent:PayPalSDK/PayPal-NET-SDK 1.9.1 (lang=DOTNET;v=4.5.1;clr=4.0.30319.42000;bit=64;os=Microsoft Windows NT 10.0.17134.0)
+2019-06-20 20:01:56,227
+      [8] DEBUG PayPal.Api.PayPalResource [(null)] Authorization:Bearer A21AAE3gDl6rLmRcH7YiXz-D0X8BfZ_JJbFXIz5T7b0BohOyWbeyTX3ep-7owzjcOjOAaoAFTDTkNe3HcFSEnvAkbiOligRNw
+2019-06-20 20:01:56,227
+      [8] DEBUG PayPal.Api.PayPalResource [(null)] PayPal-Request-Id:04f97ea5-53e1-4322-9502-bc75f556a7d2
+2019-06-20 20:01:56,446
+      [8] DEBUG PayPal.Api.HttpConnection [(null)] {"intent":"sale","payer":{"payment_method":"paypal"},"transactions":[{"amount":{"currency":"USD","total":"3","details":{"subtotal":"1","shipping":"1","tax":"1"}},"description":"Transaction description","invoice_number":"your invoice number","item_list":{"items":[{"sku":"sku","name":"Item Name comes here","quantity":"1","price":"1","currency":"USD"}]}}],"redirect_urls":{"return_url":"http://localhost:51155/Paypal/PaymentWithPayPal?guid=69876","cancel_url":"http://localhost:51155/Paypal/PaymentWithPayPal?guid=69876&Cancel=true"}}
+2019-06-20 20:01:58,105
+      [8] DEBUG PayPal.Api.HttpConnection [(null)] Service response: 
+2019-06-20 20:01:58,105
+      [8] DEBUG PayPal.Api.HttpConnection [(null)] {"id":"PAYID-LUF5QII21643517P89763914","intent":"sale","state":"created","payer":{"payment_method":"paypal"},"transactions":[{"amount":{"total":"3.00","currency":"USD","details":{"subtotal":"1.00","tax":"1.00","shipping":"1.00"}},"description":"Transaction description","invoice_number":"your invoice number","item_list":{"items":[{"name":"Item Name comes here","sku":"sku","price":"1.00","currency":"USD","quantity":1}]},"related_resources":[]}],"create_time":"2019-06-20T19:01:52Z","links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payment/PAYID-LUF5QII21643517P89763914","rel":"self","method":"GET"},{"href":"https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-3GW2810066043993Y","rel":"approval_url","method":"REDIRECT"},{"href":"https://api.sandbox.paypal.com/v1/payments/payment/PAYID-LUF5QII21643517P89763914/execute","rel":"execute","method":"POST"}]}
+2019-06-20 20:16:58,038
+      [28] DEBUG PayPal.Api.PayPalResource [(null)] Content-Type:application/x-www-form-urlencoded
+2019-06-20 20:16:58,055
+      [28] DEBUG PayPal.Api.PayPalResource [(null)] User-Agent:PayPalSDK/PayPal-NET-SDK 1.9.1 (lang=DOTNET;v=4.5.1;clr=4.0.30319.42000;bit=64;os=Microsoft Windows NT 10.0.17134.0)
+2019-06-20 20:16:58,056
+      [28] DEBUG PayPal.Api.PayPalResource [(null)] Authorization:Basic QVVIS3BBSHV4OG1rQy1GaFFWZzZ1OGViWHF6ZGxqRm1aSlFpQnY2c0NwVEVyN1d0c1o1VDhkU29tWG5mNE1BNGc4Qlg5SGNzSFdsRS1ZeG06RUcwQmtzNFBkM05JUjBLNGZ4VkZ0NkZVcTNMWnN6OXFJVlA1bjd0a2tUcXNuNVhxd3RMQ29EMmFQTndWZjJvengxcTk0Y24weVMtNFB4RWY=
+2019-06-20 20:16:58,056
+      [28] DEBUG PayPal.Api.PayPalResource [(null)] PayPal-Request-Id:a011e313-43b3-444c-beb0-16a5ed6c087a
+2019-06-20 20:16:58,372
+      [28] DEBUG PayPal.Api.HttpConnection [(null)] grant_type=client_credentials
+2019-06-20 20:16:59,336
+      [28] DEBUG PayPal.Api.HttpConnection [(null)] Service response: 
+2019-06-20 20:16:59,336
+      [28] DEBUG PayPal.Api.HttpConnection [(null)] {"scope":"https://uri.paypal.com/services/invoicing https://uri.paypal.com/services/disputes/read-buyer https://uri.paypal.com/services/payments/realtimepayment https://uri.paypal.com/services/disputes/update-seller openid https://uri.paypal.com/services/payments/payment/authcapture https://uri.paypal.com/services/disputes/read-seller https://uri.paypal.com/services/payments/refund https://api.paypal.com/v1/vault/credit-card https://api.paypal.com/v1/payments/.* https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.* https://uri.paypal.com/services/subscriptions https://uri.paypal.com/services/applications/webhooks","access_token":"A21AAE3gDl6rLmRcH7YiXz-D0X8BfZ_JJbFXIz5T7b0BohOyWbeyTX3ep-7owzjcOjOAaoAFTDTkNe3HcFSEnvAkbiOligRNw","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":31430,"nonce":"2019-06-20T19:00:44Z8QpD9UcTzcuh99MMF2LxES52muyMKbauzvTW5eHhGPA"}
+2019-06-20 20:16:59,561
+      [28] DEBUG PayPal.Api.PayPalResource [(null)] Content-Type:application/json
+2019-06-20 20:16:59,561
+      [28] DEBUG PayPal.Api.PayPalResource [(null)] User-Agent:PayPalSDK/PayPal-NET-SDK 1.9.1 (lang=DOTNET;v=4.5.1;clr=4.0.30319.42000;bit=64;os=Microsoft Windows NT 10.0.17134.0)
+2019-06-20 20:16:59,562
+      [28] DEBUG PayPal.Api.PayPalResource [(null)] Authorization:Bearer A21AAE3gDl6rLmRcH7YiXz-D0X8BfZ_JJbFXIz5T7b0BohOyWbeyTX3ep-7owzjcOjOAaoAFTDTkNe3HcFSEnvAkbiOligRNw
+2019-06-20 20:16:59,562
+      [28] DEBUG PayPal.Api.PayPalResource [(null)] PayPal-Request-Id:f6802640-ab73-4610-bb3d-061405d8ba53
+2019-06-20 20:16:59,784
+      [28] DEBUG PayPal.Api.HttpConnection [(null)] {"intent":"sale","payer":{"payment_method":"paypal"},"transactions":[{"amount":{"currency":"USD","total":"3","details":{"subtotal":"1","shipping":"1","tax":"1"}},"description":"Transaction description.","invoice_number":"451013","item_list":{"items":[{"sku":"sku","name":"Item Name comes here","quantity":"1","price":"1","currency":"USD"}]}}],"redirect_urls":{"return_url":"http://localhost:51155/Paypal/PaymentWithPayPal?guid=45101","cancel_url":"http://localhost:51155/Paypal/PaymentWithPayPal?guid=45101&Cancel=true"}}
+2019-06-20 20:17:01,094
+      [28] DEBUG PayPal.Api.HttpConnection [(null)] Service response: 
+2019-06-20 20:17:01,095
+      [28] DEBUG PayPal.Api.HttpConnection [(null)] {"id":"PAYID-LUF5XKA44738242R1279953L","intent":"sale","state":"created","payer":{"payment_method":"paypal"},"transactions":[{"amount":{"total":"3.00","currency":"USD","details":{"subtotal":"1.00","tax":"1.00","shipping":"1.00"}},"description":"Transaction description.","invoice_number":"451013","item_list":{"items":[{"name":"Item Name comes here","sku":"sku","price":"1.00","currency":"USD","quantity":1}]},"related_resources":[]}],"create_time":"2019-06-20T19:16:55Z","links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payment/PAYID-LUF5XKA44738242R1279953L","rel":"self","method":"GET"},{"href":"https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-9LU299420E098983K","rel":"approval_url","method":"REDIRECT"},{"href":"https://api.sandbox.paypal.com/v1/payments/payment/PAYID-LUF5XKA44738242R1279953L/execute","rel":"execute","method":"POST"}]}
+2019-06-20 20:17:17,838
+      [18] DEBUG PayPal.Api.PayPalResource [(null)] Content-Type:application/x-www-form-urlencoded
+2019-06-20 20:17:17,839
+      [18] DEBUG PayPal.Api.PayPalResource [(null)] User-Agent:PayPalSDK/PayPal-NET-SDK 1.9.1 (lang=DOTNET;v=4.5.1;clr=4.0.30319.42000;bit=64;os=Microsoft Windows NT 10.0.17134.0)
+2019-06-20 20:17:17,839
+      [18] DEBUG PayPal.Api.PayPalResource [(null)] Authorization:Basic QVVIS3BBSHV4OG1rQy1GaFFWZzZ1OGViWHF6ZGxqRm1aSlFpQnY2c0NwVEVyN1d0c1o1VDhkU29tWG5mNE1BNGc4Qlg5SGNzSFdsRS1ZeG06RUcwQmtzNFBkM05JUjBLNGZ4VkZ0NkZVcTNMWnN6OXFJVlA1bjd0a2tUcXNuNVhxd3RMQ29EMmFQTndWZjJvengxcTk0Y24weVMtNFB4RWY=
+2019-06-20 20:17:17,839
+      [18] DEBUG PayPal.Api.PayPalResource [(null)] PayPal-Request-Id:cb4e5b8d-20ac-4efb-bc55-1ad2a4ba5a70
+2019-06-20 20:17:18,068
+      [18] DEBUG PayPal.Api.HttpConnection [(null)] grant_type=client_credentials
+2019-06-20 20:17:18,776
+      [18] DEBUG PayPal.Api.HttpConnection [(null)] Service response: 
+2019-06-20 20:17:18,776
+      [18] DEBUG PayPal.Api.HttpConnection [(null)] {"scope":"https://uri.paypal.com/services/invoicing https://uri.paypal.com/services/disputes/read-buyer https://uri.paypal.com/services/payments/realtimepayment https://uri.paypal.com/services/disputes/update-seller openid https://uri.paypal.com/services/payments/payment/authcapture https://uri.paypal.com/services/disputes/read-seller https://uri.paypal.com/services/payments/refund https://api.paypal.com/v1/vault/credit-card https://api.paypal.com/v1/payments/.* https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.* https://uri.paypal.com/services/subscriptions https://uri.paypal.com/services/applications/webhooks","access_token":"A21AAE3gDl6rLmRcH7YiXz-D0X8BfZ_JJbFXIz5T7b0BohOyWbeyTX3ep-7owzjcOjOAaoAFTDTkNe3HcFSEnvAkbiOligRNw","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":31410,"nonce":"2019-06-20T19:00:44Z8QpD9UcTzcuh99MMF2LxES52muyMKbauzvTW5eHhGPA"}
+2019-06-20 20:17:18,777
+      [18] DEBUG PayPal.Api.PayPalResource [(null)] Content-Type:application/json
+2019-06-20 20:17:18,777
+      [18] DEBUG PayPal.Api.PayPalResource [(null)] User-Agent:PayPalSDK/PayPal-NET-SDK 1.9.1 (lang=DOTNET;v=4.5.1;clr=4.0.30319.42000;bit=64;os=Microsoft Windows NT 10.0.17134.0)
+2019-06-20 20:17:18,777
+      [18] DEBUG PayPal.Api.PayPalResource [(null)] Authorization:Bearer A21AAE3gDl6rLmRcH7YiXz-D0X8BfZ_JJbFXIz5T7b0BohOyWbeyTX3ep-7owzjcOjOAaoAFTDTkNe3HcFSEnvAkbiOligRNw
+2019-06-20 20:17:18,777
+      [18] DEBUG PayPal.Api.PayPalResource [(null)] PayPal-Request-Id:0240ae20-77c0-47f1-a3d2-b1cc89afa7c0
+2019-06-20 20:17:18,994
+      [18] DEBUG PayPal.Api.HttpConnection [(null)] {"intent":"sale","payer":{"payment_method":"paypal"},"transactions":[{"amount":{"currency":"USD","total":"3","details":{"subtotal":"1","shipping":"1","tax":"1"}},"description":"Transaction description.","invoice_number":"605096","item_list":{"items":[{"sku":"sku","name":"Item Name comes here","quantity":"1","price":"1","currency":"USD"}]}}],"redirect_urls":{"return_url":"http://localhost:51155/Paypal/PaymentWithPayPal?guid=60509","cancel_url":"http://localhost:51155/Paypal/PaymentWithPayPal?guid=60509&Cancel=true"}}
+2019-06-20 20:17:20,264
+      [18] DEBUG PayPal.Api.HttpConnection [(null)] Service response: 
+2019-06-20 20:17:20,265
+      [18] DEBUG PayPal.Api.HttpConnection [(null)] {"id":"PAYID-LUF5XOY1LG46580DC490950C","intent":"sale","state":"created","payer":{"payment_method":"paypal"},"transactions":[{"amount":{"total":"3.00","currency":"USD","details":{"subtotal":"1.00","tax":"1.00","shipping":"1.00"}},"description":"Transaction description.","invoice_number":"605096","item_list":{"items":[{"name":"Item Name comes here","sku":"sku","price":"1.00","currency":"USD","quantity":1}]},"related_resources":[]}],"create_time":"2019-06-20T19:17:15Z","links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payment/PAYID-LUF5XOY1LG46580DC490950C","rel":"self","method":"GET"},{"href":"https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-96817540UN174752L","rel":"approval_url","method":"REDIRECT"},{"href":"https://api.sandbox.paypal.com/v1/payments/payment/PAYID-LUF5XOY1LG46580DC490950C/execute","rel":"execute","method":"POST"}]}

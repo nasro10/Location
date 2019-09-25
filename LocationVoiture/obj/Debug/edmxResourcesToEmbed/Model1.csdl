@@ -1,0 +1,451 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RentDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Bookings">
+    <Key>
+      <PropertyRef Name="BookingID" />
+    </Key>
+    <Property Name="BookingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="bookingState" Type="Int32" Nullable="false" />
+    <Property Name="CarsNumber" Type="Int32" Nullable="false" />
+    <Property Name="BookingDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="Driver" Type="Boolean" Nullable="false" />
+    <Property Name="Delivery" Type="Boolean" Nullable="false" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Car_CarID" Type="Int32" />
+    <Property Name="Invoice_InvoiceID" Type="Int32" />
+    <Property Name="User_UserID" Type="Int32" />
+    <NavigationProperty Name="Cars" Relationship="Self.FK_dbo_Bookings_dbo_Cars_Car_CarID" FromRole="Bookings" ToRole="Cars" />
+    <NavigationProperty Name="Invoices" Relationship="Self.FK_dbo_Bookings_dbo_Invoices_Invoice_InvoiceID" FromRole="Bookings" ToRole="Invoices" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_dbo_Bookings_dbo_Users_Client_UserID" FromRole="Bookings" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="CarModels">
+    <Key>
+      <PropertyRef Name="CarModelID" />
+    </Key>
+    <Property Name="CarModelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Cars" Relationship="Self.FK_dbo_Cars_dbo_CarModels_CarModel_CarModelID" FromRole="CarModels" ToRole="Cars" />
+  </EntityType>
+  <EntityType Name="Cars">
+    <Key>
+      <PropertyRef Name="CarID" />
+    </Key>
+    <Property Name="CarID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SerialNumber" Type="Int32" Nullable="false" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Fuel" Type="Int32" Nullable="false" />
+    <Property Name="LoanMinPrice" Type="Double" Nullable="false" />
+    <Property Name="PricePerHour" Type="Double" Nullable="false" />
+    <Property Name="PricePerDay" Type="Double" Nullable="false" />
+    <Property Name="PricePerMonth" Type="Double" Nullable="false" />
+    <Property Name="seatNumber" Type="Int32" Nullable="false" />
+    <Property Name="Gear" Type="Int32" Nullable="false" />
+    <Property Name="CarModel_CarModelID" Type="Int32" />
+    <Property Name="Category_CategoryID" Type="Int32" />
+    <Property Name="CreationYear_CreationYearID" Type="Int32" />
+    <Property Name="TypeCar_TypeID" Type="Int32" />
+    <NavigationProperty Name="Bookings" Relationship="Self.FK_dbo_Bookings_dbo_Cars_Car_CarID" FromRole="Cars" ToRole="Bookings" />
+    <NavigationProperty Name="CarModels" Relationship="Self.FK_dbo_Cars_dbo_CarModels_CarModel_CarModelID" FromRole="Cars" ToRole="CarModels" />
+    <NavigationProperty Name="Categories" Relationship="Self.FK_dbo_Cars_dbo_Categories_Category_CategoryID" FromRole="Cars" ToRole="Categories" />
+    <NavigationProperty Name="CreationYears" Relationship="Self.FK_dbo_Cars_dbo_CreationYears_CreationYear_CreationYearID" FromRole="Cars" ToRole="CreationYears" />
+    <NavigationProperty Name="TypeCars" Relationship="Self.FK_dbo_Cars_dbo_TypeCars_TypeCar_TypeID" FromRole="Cars" ToRole="TypeCars" />
+    <NavigationProperty Name="Images" Relationship="Self.FK_dbo_Images_dbo_Cars_Car_CarID" FromRole="Cars" ToRole="Images" />
+    <NavigationProperty Name="Rates" Relationship="Self.FK_dbo_Rates_dbo_Cars_Car_CarID" FromRole="Cars" ToRole="Rates" />
+  </EntityType>
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Cars" Relationship="Self.FK_dbo_Cars_dbo_Categories_Category_CategoryID" FromRole="Categories" ToRole="Cars" />
+    <NavigationProperty Name="SubCategories" Relationship="Self.FK_dbo_SubCategories_dbo_Categories_Category_CategoryID" FromRole="Categories" ToRole="SubCategories" />
+  </EntityType>
+  <EntityType Name="Countries">
+    <Key>
+      <PropertyRef Name="CountryID" />
+    </Key>
+    <Property Name="CountryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CountryName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="States" Relationship="Self.FK_dbo_States_dbo_Countries_Country_CountryID" FromRole="Countries" ToRole="States" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_dbo_Users_dbo_Countries_Country_CountryID" FromRole="Countries" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="CreationYears">
+    <Key>
+      <PropertyRef Name="CreationYearID" />
+    </Key>
+    <Property Name="CreationYearID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Cars" Relationship="Self.FK_dbo_Cars_dbo_CreationYears_CreationYear_CreationYearID" FromRole="CreationYears" ToRole="Cars" />
+  </EntityType>
+  <EntityType Name="Images">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Car_CarID" Type="Int32" />
+    <NavigationProperty Name="Cars" Relationship="Self.FK_dbo_Images_dbo_Cars_Car_CarID" FromRole="Images" ToRole="Cars" />
+  </EntityType>
+  <EntityType Name="Invoices">
+    <Key>
+      <PropertyRef Name="InvoiceID" />
+    </Key>
+    <Property Name="InvoiceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InvoiceDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="Price" Type="Single" Nullable="false" />
+    <Property Name="Duration" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Bookings" Relationship="Self.FK_dbo_Bookings_dbo_Invoices_Invoice_InvoiceID" FromRole="Invoices" ToRole="Bookings" />
+  </EntityType>
+  <EntityType Name="Notifications">
+    <Key>
+      <PropertyRef Name="NotificationID" />
+    </Key>
+    <Property Name="NotificationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SendDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="User_UserID" Type="Int32" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_dbo_Notifications_dbo_Users_Admin_UserID" FromRole="Notifications" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Rates">
+    <Key>
+      <PropertyRef Name="RateID" />
+    </Key>
+    <Property Name="RateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Number" Type="Int32" Nullable="false" />
+    <Property Name="Car_CarID" Type="Int32" />
+    <Property Name="User_UserID" Type="Int32" />
+    <NavigationProperty Name="Cars" Relationship="Self.FK_dbo_Rates_dbo_Cars_Car_CarID" FromRole="Rates" ToRole="Cars" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_dbo_Rates_dbo_Users_Client_UserID" FromRole="Rates" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Users" Relationship="Self.RoleUsers" FromRole="Roles" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="States">
+    <Key>
+      <PropertyRef Name="StateID" />
+    </Key>
+    <Property Name="StateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StateName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Country_CountryID" Type="Int32" />
+    <NavigationProperty Name="Countries" Relationship="Self.FK_dbo_States_dbo_Countries_Country_CountryID" FromRole="States" ToRole="Countries" />
+  </EntityType>
+  <EntityType Name="SubCategories">
+    <Key>
+      <PropertyRef Name="SubCategoryID" />
+    </Key>
+    <Property Name="SubCategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Subscription" Type="Single" Nullable="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="Category_CategoryID" Type="Int32" />
+    <NavigationProperty Name="Categories" Relationship="Self.FK_dbo_SubCategories_dbo_Categories_Category_CategoryID" FromRole="SubCategories" ToRole="Categories" />
+  </EntityType>
+  <EntityType Name="TypeCars">
+    <Key>
+      <PropertyRef Name="TypeID" />
+    </Key>
+    <Property Name="TypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Picture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Cars" Relationship="Self.FK_dbo_Cars_dbo_TypeCars_TypeCar_TypeID" FromRole="TypeCars" ToRole="Cars" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CIN" Type="Int32" Nullable="false" />
+    <Property Name="phone" Type="Int32" Nullable="false" />
+    <Property Name="SignUpDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="Picture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CinPicture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="WorkingLicencePicture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="WorkReport" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreditCard" Type="Int32" Nullable="false" />
+    <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="Gender" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Country_CountryID" Type="Int32" />
+    <NavigationProperty Name="Bookings" Relationship="Self.FK_dbo_Bookings_dbo_Users_Client_UserID" FromRole="Users" ToRole="Bookings" />
+    <NavigationProperty Name="Countries" Relationship="Self.FK_dbo_Users_dbo_Countries_Country_CountryID" FromRole="Users" ToRole="Countries" />
+    <NavigationProperty Name="Notifications" Relationship="Self.FK_dbo_Notifications_dbo_Users_Admin_UserID" FromRole="Users" ToRole="Notifications" />
+    <NavigationProperty Name="Rates" Relationship="Self.FK_dbo_Rates_dbo_Users_Client_UserID" FromRole="Users" ToRole="Rates" />
+    <NavigationProperty Name="Roles" Relationship="Self.RoleUsers" FromRole="Users" ToRole="Roles" />
+  </EntityType>
+  <Association Name="FK_dbo_Bookings_dbo_Cars_Car_CarID">
+    <End Role="Cars" Type="Self.Cars" Multiplicity="0..1" />
+    <End Role="Bookings" Type="Self.Bookings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cars">
+        <PropertyRef Name="CarID" />
+      </Principal>
+      <Dependent Role="Bookings">
+        <PropertyRef Name="Car_CarID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Bookings_dbo_Invoices_Invoice_InvoiceID">
+    <End Role="Invoices" Type="Self.Invoices" Multiplicity="0..1" />
+    <End Role="Bookings" Type="Self.Bookings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Invoices">
+        <PropertyRef Name="InvoiceID" />
+      </Principal>
+      <Dependent Role="Bookings">
+        <PropertyRef Name="Invoice_InvoiceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Bookings_dbo_Users_Client_UserID">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Bookings" Type="Self.Bookings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Bookings">
+        <PropertyRef Name="User_UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Cars_dbo_CarModels_CarModel_CarModelID">
+    <End Role="CarModels" Type="Self.CarModels" Multiplicity="0..1" />
+    <End Role="Cars" Type="Self.Cars" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CarModels">
+        <PropertyRef Name="CarModelID" />
+      </Principal>
+      <Dependent Role="Cars">
+        <PropertyRef Name="CarModel_CarModelID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Cars_dbo_Categories_Category_CategoryID">
+    <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+    <End Role="Cars" Type="Self.Cars" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="Cars">
+        <PropertyRef Name="Category_CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Cars_dbo_CreationYears_CreationYear_CreationYearID">
+    <End Role="CreationYears" Type="Self.CreationYears" Multiplicity="0..1" />
+    <End Role="Cars" Type="Self.Cars" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CreationYears">
+        <PropertyRef Name="CreationYearID" />
+      </Principal>
+      <Dependent Role="Cars">
+        <PropertyRef Name="CreationYear_CreationYearID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Cars_dbo_TypeCars_TypeCar_TypeID">
+    <End Role="TypeCars" Type="Self.TypeCars" Multiplicity="0..1" />
+    <End Role="Cars" Type="Self.Cars" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypeCars">
+        <PropertyRef Name="TypeID" />
+      </Principal>
+      <Dependent Role="Cars">
+        <PropertyRef Name="TypeCar_TypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Images_dbo_Cars_Car_CarID">
+    <End Role="Cars" Type="Self.Cars" Multiplicity="0..1" />
+    <End Role="Images" Type="Self.Images" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cars">
+        <PropertyRef Name="CarID" />
+      </Principal>
+      <Dependent Role="Images">
+        <PropertyRef Name="Car_CarID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Rates_dbo_Cars_Car_CarID">
+    <End Role="Cars" Type="Self.Cars" Multiplicity="0..1" />
+    <End Role="Rates" Type="Self.Rates" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cars">
+        <PropertyRef Name="CarID" />
+      </Principal>
+      <Dependent Role="Rates">
+        <PropertyRef Name="Car_CarID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_SubCategories_dbo_Categories_Category_CategoryID">
+    <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+    <End Role="SubCategories" Type="Self.SubCategories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="SubCategories">
+        <PropertyRef Name="Category_CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_States_dbo_Countries_Country_CountryID">
+    <End Role="Countries" Type="Self.Countries" Multiplicity="0..1" />
+    <End Role="States" Type="Self.States" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Countries">
+        <PropertyRef Name="CountryID" />
+      </Principal>
+      <Dependent Role="States">
+        <PropertyRef Name="Country_CountryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Users_dbo_Countries_Country_CountryID">
+    <End Role="Countries" Type="Self.Countries" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Countries">
+        <PropertyRef Name="CountryID" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="Country_CountryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Notifications_dbo_Users_Admin_UserID">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Notifications" Type="Self.Notifications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Notifications">
+        <PropertyRef Name="User_UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Rates_dbo_Users_Client_UserID">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Rates" Type="Self.Rates" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Rates">
+        <PropertyRef Name="User_UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RoleUsers">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="*" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="RentDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+    <EntitySet Name="Bookings" EntityType="Self.Bookings" />
+    <EntitySet Name="CarModels" EntityType="Self.CarModels" />
+    <EntitySet Name="Cars" EntityType="Self.Cars" />
+    <EntitySet Name="Categories" EntityType="Self.Categories" />
+    <EntitySet Name="Countries" EntityType="Self.Countries" />
+    <EntitySet Name="CreationYears" EntityType="Self.CreationYears" />
+    <EntitySet Name="Images" EntityType="Self.Images" />
+    <EntitySet Name="Invoices" EntityType="Self.Invoices" />
+    <EntitySet Name="Notifications" EntityType="Self.Notifications" />
+    <EntitySet Name="Rates" EntityType="Self.Rates" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" />
+    <EntitySet Name="States" EntityType="Self.States" />
+    <EntitySet Name="SubCategories" EntityType="Self.SubCategories" />
+    <EntitySet Name="TypeCars" EntityType="Self.TypeCars" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <AssociationSet Name="FK_dbo_Bookings_dbo_Cars_Car_CarID" Association="Self.FK_dbo_Bookings_dbo_Cars_Car_CarID">
+      <End Role="Cars" EntitySet="Cars" />
+      <End Role="Bookings" EntitySet="Bookings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Bookings_dbo_Invoices_Invoice_InvoiceID" Association="Self.FK_dbo_Bookings_dbo_Invoices_Invoice_InvoiceID">
+      <End Role="Invoices" EntitySet="Invoices" />
+      <End Role="Bookings" EntitySet="Bookings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Bookings_dbo_Users_Client_UserID" Association="Self.FK_dbo_Bookings_dbo_Users_Client_UserID">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Bookings" EntitySet="Bookings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Cars_dbo_CarModels_CarModel_CarModelID" Association="Self.FK_dbo_Cars_dbo_CarModels_CarModel_CarModelID">
+      <End Role="CarModels" EntitySet="CarModels" />
+      <End Role="Cars" EntitySet="Cars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Cars_dbo_Categories_Category_CategoryID" Association="Self.FK_dbo_Cars_dbo_Categories_Category_CategoryID">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="Cars" EntitySet="Cars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Cars_dbo_CreationYears_CreationYear_CreationYearID" Association="Self.FK_dbo_Cars_dbo_CreationYears_CreationYear_CreationYearID">
+      <End Role="CreationYears" EntitySet="CreationYears" />
+      <End Role="Cars" EntitySet="Cars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Cars_dbo_TypeCars_TypeCar_TypeID" Association="Self.FK_dbo_Cars_dbo_TypeCars_TypeCar_TypeID">
+      <End Role="TypeCars" EntitySet="TypeCars" />
+      <End Role="Cars" EntitySet="Cars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Images_dbo_Cars_Car_CarID" Association="Self.FK_dbo_Images_dbo_Cars_Car_CarID">
+      <End Role="Cars" EntitySet="Cars" />
+      <End Role="Images" EntitySet="Images" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Rates_dbo_Cars_Car_CarID" Association="Self.FK_dbo_Rates_dbo_Cars_Car_CarID">
+      <End Role="Cars" EntitySet="Cars" />
+      <End Role="Rates" EntitySet="Rates" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_SubCategories_dbo_Categories_Category_CategoryID" Association="Self.FK_dbo_SubCategories_dbo_Categories_Category_CategoryID">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="SubCategories" EntitySet="SubCategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_States_dbo_Countries_Country_CountryID" Association="Self.FK_dbo_States_dbo_Countries_Country_CountryID">
+      <End Role="Countries" EntitySet="Countries" />
+      <End Role="States" EntitySet="States" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Users_dbo_Countries_Country_CountryID" Association="Self.FK_dbo_Users_dbo_Countries_Country_CountryID">
+      <End Role="Countries" EntitySet="Countries" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Notifications_dbo_Users_Admin_UserID" Association="Self.FK_dbo_Notifications_dbo_Users_Admin_UserID">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Notifications" EntitySet="Notifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Rates_dbo_Users_Client_UserID" Association="Self.FK_dbo_Rates_dbo_Users_Client_UserID">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Rates" EntitySet="Rates" />
+    </AssociationSet>
+    <AssociationSet Name="RoleUsers" Association="Self.RoleUsers">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

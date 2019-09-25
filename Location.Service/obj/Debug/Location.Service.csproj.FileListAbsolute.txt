@@ -1,0 +1,17 @@
+C:\Users\nasre\source\repos\Location\Location.Service\bin\Debug\Location.Service.dll
+C:\Users\nasre\source\repos\Location\Location.Service\bin\Debug\Location.Service.pdb
+C:\Users\nasre\source\repos\Location\Location.Service\bin\Debug\Location.Data.dll
+C:\Users\nasre\source\repos\Location\Location.Service\bin\Debug\Location.Domain.dll
+C:\Users\nasre\source\repos\Location\Location.Service\bin\Debug\Location.Pattern.dll
+C:\Users\nasre\source\repos\Location\Location.Service\bin\Debug\EntityFramework.dll
+C:\Users\nasre\source\repos\Location\Location.Service\bin\Debug\Location.Data.pdb
+C:\Users\nasre\source\repos\Location\Location.Service\bin\Debug\Location.Data.dll.config
+C:\Users\nasre\source\repos\Location\Location.Service\bin\Debug\Location.Domain.pdb
+C:\Users\nasre\source\repos\Location\Location.Service\bin\Debug\Location.Pattern.pdb
+C:\Users\nasre\source\repos\Location\Location.Service\bin\Debug\EntityFramework.xml
+C:\Users\nasre\source\repos\Location\Location.Service\bin\Debug\fr\EntityFramework.resources.dll
+C:\Users\nasre\source\repos\Location\Location.Service\obj\Debug\Location.Service.csprojAssemblyReference.cache
+C:\Users\nasre\source\repos\Location\Location.Service\obj\Debug\Location.Service.csproj.CoreCompileInputs.cache
+C:\Users\nasre\source\repos\Location\Location.Service\obj\Debug\Location.Service.csproj.CopyComplete
+C:\Users\nasre\source\repos\Location\Location.Service\obj\Debug\Location.Service.dll
+C:\Users\nasre\source\repos\Location\Location.Service\obj\Debug\Location.Service.pdb

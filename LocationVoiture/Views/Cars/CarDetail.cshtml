@@ -1,0 +1,221 @@
+﻿@model Location.Domain.Entities.Car
+
+@{
+    /**/
+
+    ViewBag.Title = "CarDetail";
+    Layout = "~/Views/Shared/_Rate.cshtml";
+}
+
+
+<div class="col-lg-8">
+    <div class="car-details-content">
+        <h2>@Model.CarModel.Name <span class="price">Rent: $<b>@Model.PricePerDay</b></span></h2>
+        <div class="car-preview-crousel">
+            @foreach (var item in Model.Images)
+            {
+                <div class="single-car-preview">
+
+                    <img src="~/Uploads/@Html.DisplayFor(modelItem => item.FileName)" alt="JSOFT">
+
+
+                </div>
+            }
+
+        </div>
+        <div class="car-details-info">
+            <h4>Additional Info</h4>
+            <p>The Aventador LPER 720-4 50° ise a limited (200 units – 100 Coupe and 100 Roadster) versione of thed Aventadored LP 700-4 commemorating the 50th anniversary of Lamborghini. It included ised increased engine power to 720 PS (530 kW; 710 bhp) via a new specific engine calibration, enlarged and extended front air intakes and the aerodynamic splitter.</p>
+
+            <div class="technical-info">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="tech-info-table">
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Class</th>
+                                    <td>@Model.TypeCar.Name</td>
+                                </tr>
+                                <tr>
+                                    <th>Fuel</th>
+                                    <td>@Model.Fuel</td>
+                                </tr>
+                                <tr>
+                                    <th>Doors</th>
+                                    <td>@Model.seatNumber</td>
+                                </tr>
+                                <tr>
+                                    <th>GearBox</th>
+                                    <td>@Model.Gear</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="tech-info-list">
+                            <ul>
+                                <li>ABS</li>
+                                <li>Air Bags</li>
+                                <li>Bluetooth</li>
+                                <li>Car Kit</li>
+                                <li>GPS</li>
+                                <li>Music</li>
+                                <li>Bluetooth</li>
+                                <li>ABS</li>
+                                <li>GPS</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="review">
+                <p>The OverAll Rating: </p>
+                <div class="rateit" data-rateit-value="@ViewBag.note" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+
+            </div>
+            <div class="clearfix"> </div>
+
+            <div class="review-area">
+                <h3>Rate this: “@Model.CarModel.Name”</h3>
+                <div class="review-star">
+                    <div id="products">
+                        <div data-carid=@Model.CarID class="rateit" data-rateit-step="1"></div>
+                        <br />
+                        <div style="float:left; ">
+
+                            <p id="response"></p>
+
+                        </div>
+                        <div style="float:left; ">
+
+                            <p id="note"></p>
+
+                        </div>
+
+                        <div class="clearfix"> </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<div class="col-lg-4">
+    <div class="sidebar-content-wrap m-t-50">
+
+        <div class="single-sidebar">
+            <h3>Car Owner</h3>
+
+            <div class="sidebar-body">
+                <ul class="recent-tips">
+                    <li class="single-recent-tips">
+                        <div class="recent-tip-thum">
+                            <img src="~/Uploads/@Model.User.Picture" class="rounded-circle" alt="Cinque Terre">
+                        </div>
+
+                    </li>
+
+                </ul>
+                <div class="review">
+                    <p>The OverAll Rating: </p>
+                    <div class="rateit" data-rateit-value="@ViewBag.note1" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+
+                </div>
+                <div class="clearfix"> </div>
+
+                <div class="review-area">
+                    <h3>Rate @Model.User.UserName </h3>
+                    <div class="review-star">
+                        <div id="Users">
+                            <div data-useridu=@Model.User.UserID class="rateit" data-rateit-step="1"></div>
+                            <br />
+                            <div style="float:left; ">
+
+                                <p id="responseu"></p>
+
+                            </div>
+                            <div style="float:left; ">
+
+                                <p id="noteu"></p>
+
+                            </div>
+
+                            <div class="clearfix"> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="single-sidebar">
+            <h3>For More Informations</h3>
+
+            <div class="sidebar-body">
+                <p><i class="fa fa-mobile"></i>@Model.User.phone</p>
+                <p><i class="fa fa-envelope-square"></i>@Model.User.Email</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section scripts{
+
+    <script src="~/Scripts/jquery.rateit.min.js"></script>
+    <script type="text/javascript">
+       $('#products .rateit').bind('rated reset', function (e) {
+         var ri = $(this);
+
+         var value = ri.rateit('value');
+         var CarID = ri.data('carid');
+
+         ri.rateit('readonly', true);
+
+         $.ajax({
+             url: '@Url.Action("Rate","Cars")',
+             data: { id: CarID, value: value },
+             type: 'POST',
+             success: function (data) {
+                 $('#response').append('<li>' + 'Thanks for rating !' + '</li>');
+                 $('#note').html("<br/> <li>New Global Rate :  "+data +'</li>');
+
+             },
+             error: function (jxhr, msg, err) {
+                 $('#response').append('<li style="color:red">' + msg + '</li>');
+             }
+        });
+    });
+    </script>
+
+
+
+    <script type="text/javascript">
+       $('#Users .rateit').bind('rated reset', function (e) {
+         var ri = $(this);
+
+           var valueu = ri.rateit('value');
+           var UserID = ri.data('useridu');
+           console.log(valueu);
+         ri.rateit('readonly', true);
+
+         $.ajax({
+             url: '@Url.Action("RateUser", "Cars")',
+             data: { id: UserID, valueu: valueu },
+             type: 'POST',
+             success: function (data) {
+                 $('#responseu').append('<li>' + 'Thanks for rating !' + '</li>');
+                 $('#note').html("<br/> <li>New Global Rate :  "+data +'</li>');
+
+             },
+             error: function (jxhr, msg, err) {
+                 $('#responseu').append('<li style="color:red">' + msg + '</li>');
+             }
+        });
+    });
+    </script>
+}

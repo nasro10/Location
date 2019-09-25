@@ -1,0 +1,78 @@
+﻿@model Location.Domain.Entities.Car
+
+@{
+    if (Model.Rates.Count > 0)
+    {
+        <p>
+            The Overall Rating for @Model.CarModel.Name is @Model.OverallRating
+        </p>
+    }
+    else
+    {
+        <p>   Be The First To Rate @Model.CarModel.Name</p>
+    }
+
+}
+<style>
+    .rate {
+        color:white;
+        display:inline-block;
+        text-shadow : 2px 2px 7px grey;
+        font-size:25px !important;
+    }
+    .rate :hover{
+        color:yellow;
+    }
+    .rate.active ,.rate.secondary-active{
+        color:yellow;
+    }
+    /*input[type="radio"]{
+        display:none;
+    }*/
+</style>
+
+@{
+    using (Html.BeginForm("SetRating", "Ratings"))
+    {
+        @Html.HiddenFor(x => x.CarID)
+        for (int i = 1; i <= 5; i++)
+        {
+<div class="rate">
+    <label for="Number"><i class="fa fa-star" aria-hidden="true"></i></label>
+    <input type="radio" id="Number" name="Number" value="@i" />
+</div>
+
+        }
+            <div class="review-area">
+                <div class="review-form">
+                    <div class="message-input">
+                        <textarea name="Description" id="Description" cols="30" rows="5" placeholder="Write Your Feedback Here!"></textarea>
+                    </div>
+
+                    <div class="input-submit">
+                        <button type="submit">Submit</button>
+                        <button type="reset">Clear</button>
+                    </div>
+                </div>
+            </div>
+    }
+
+            @*for (int i = 1; i <= 5; i++)
+                {
+                    <a href="#" name="Number"  data-number="@i"  data-carid="@Model.CarID" > <i class="fa fa-star@(Model.OverallRating< i ? " unmark" : "")"></i> </a>
+
+                }*@
+            }
+
+            @*@{using (Html.BeginForm("SetRating", "Ratings"))
+                    {
+                        @Html.HiddenFor(x => x.CarID)
+                        for (int i = 1; i <= 5; i++)
+                        {
+                            <input type="radio" id="Number" name="Number" value="@i" />@i
+                        }
+
+                        <input type="submit" value="submit" />
+                    }
+
+                }*@

@@ -1,0 +1,284 @@
+﻿@model IEnumerable<Location.Domain.Entities.User>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<section class="content">
+    <p>
+        <button onclick="location.href='@Url.Action("Create","User")'" class="btn btn-primary">
+            <i class="fa fa-plus"></i>  Create New
+        </button>
+    </p>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">List of Clients</h3>
+                </div>
+                <div class="box-body">
+                    <table id="example1" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.UserName)
+                                </th>
+                                <th>
+                                    Last Name
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Name)
+                                </th>
+                                <th>
+                                    Card Id Number
+                                </th>
+                                <th>
+                                    Phone Number
+                                </th>
+                                <th>
+                                    Sign Up Date
+                                </th>
+                                <th>Active</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UserName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LastName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CIN)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.phone)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SignUpDate)
+                                </td>
+                                <td class="txtCheckBox">
+                                    @{
+                                        if (item.IsActive)
+                                        {
+                                            <a href="#" style="padding: 3px 10px 3px 10px; background-color:green " class="badge" readonly>Active</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="#" style="padding: 3px 10px 3px 10px; background-color:red " class="badge" readonly>Banned</a>
+                                        }
+                                    }
+                                </td>
+
+                                <td>
+                                    <button class="btn btn-info" onclick="location.href='@Url.Action("Edit","User", new { id = item.UserID })'">
+                                        <i class="fa fa-pencil"></i>
+                                    </button>
+
+                                    <button class="btn btn-danger btn_delete " data-id="@item.UserID" data-toggle="modal" data-target="#modal-default">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                    @{
+                                        if (item.IsActive)
+                                        {
+                                            <button class="btn btn-warning btn_ban " data-id="@item.UserID" data-toggle="modal" data-target="#modal-ban">
+                                                <i class="fa fa-ban"></i>
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            <button class="btn btn-success btn_active " data-id="@item.UserID" data-toggle="modal" data-target="#modal-active">
+                                                <i class="glyphicon glyphicon-ok"></i>
+                                            </button>
+                                        }
+
+
+                                    }
+
+
+
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="modal fade" id="modal-default">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Delete Confirmation</h4>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this User?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+
+                @Html.Hidden("UserID", "", new { @class = "hiddenid" })
+                <div class="form-actions no-color">
+                    <input type="submit" value="Delete" class="btn btn-default" onclick="Delete()" />
+                </div>
+
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="modal-ban">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Ban Confirmation</h4>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to Ban this User?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+
+                @Html.Hidden("UserID", "", new { @class = "hiddenid" })
+                <div class="form-actions no-color">
+                    <input type="submit" value="Ban" class="btn btn-default" onclick="Ban()" />
+                </div>
+
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+
+<div class="modal fade" id="modal-active">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Activation Confirmation</h4>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to Activate this User?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+
+                @Html.Hidden("UserID", "", new { @class = "hiddenid" })
+                <div class="form-actions no-color">
+                    <input type="submit" value="Ban" class="btn btn-default" onclick="active()" />
+                </div>
+
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+@section scripts{
+    <script>
+    $(function () {
+        $('#example1').DataTable()
+    })
+    $(document).on("click", ".btn_delete", function () {
+        var passedID = $(this).data('id');
+        $(".modal-footer .hiddenid").val(passedID);
+    });
+     function Delete() {
+            var user_id = $("#UserID").val();
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Delete","User")',
+                data: JSON.stringify({ id: user_id}) ,
+
+                dataType: "json",
+                contentType: 'application/json; charset=utf-8',
+                success: function (result) {
+                    console.log(result);
+                    //$(".row_" + sub_category_id).remove();
+                    window.location.reload();
+                    $('#modal-default').modal('hide');
+                }
+
+            })
+    }
+
+
+    $(document).on("click", ".btn_ban", function () {
+        var passedID = $(this).data('id');
+        $(".modal-footer .hiddenid").val(passedID);
+    });
+    function Ban() {
+        var user_id = $("#UserID").val();
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("BanUser", "User")',
+                data: JSON.stringify({ id: user_id}) ,
+
+                dataType: "json",
+                contentType: 'application/json; charset=utf-8',
+                success: function (result) {
+                    console.log(result);
+                    //$(".row_" + sub_category_id).remove();
+                    window.location.reload();
+                    $('#modal-default').modal('hide');
+                }
+
+            })
+        }
+
+
+
+
+         $(document).on("click", ".btn_active", function () {
+        var passedID = $(this).data('id');
+        $(".modal-footer .hiddenid").val(passedID);
+    });
+    function Ban() {
+        var user_id = $("#UserID").val();
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("ActiveClient", "User")',
+                data: JSON.stringify({ id: user_id}) ,
+
+                dataType: "json",
+                contentType: 'application/json; charset=utf-8',
+                success: function (result) {
+                    console.log(result);
+                    //$(".row_" + sub_category_id).remove();
+                    window.location.reload();
+                    $('#modal-default').modal('hide');
+                }
+
+            })
+     }
+    </script>
+}

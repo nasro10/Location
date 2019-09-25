@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Location.Domain.Entities.Category>
+
+@{
+    ViewBag.Title = "Categories";
+    Layout = "~/Views/Shared/_CategoryLayout.cshtml";
+}
+
+
+@foreach (var item in Model)
+{
+
+    <div class="col-lg-6 col-md-6">
+        <div class="single-car-wrap">
+            <img class="card-img-top" src="~/Uploads/@item.Picture" alt="JSOFT" style="width:100%">
+            <div class="car-list-info without-bar">
+                <h2>@Html.DisplayFor(modelItem => item.Name)</h2>
+              
+                <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                @Html.ActionLink("Details", "subs", new { id = item.CategoryID }, new { @class = "btn btn-primary" })
+
+                
+            </div>
+        </div>
+    </div>
+
+
+}
+

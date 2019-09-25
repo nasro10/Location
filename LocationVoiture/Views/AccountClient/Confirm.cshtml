@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "Confirm";
+    Layout = "~/Views/Shared/_ClientLayout.cshtml";
+}
+
+<br /> <br />
+
+<div class="alert alert-warning" id="previous">
+    <strong>
+        confirm your Account
+    </strong>
+    <input type="submit" class="btn btn-warning" value="Confirm" onclick="Verified()" />
+</div>
+<div class="alert alert-success" id="after" style="display:none">
+    <strong>
+        <span class="glyphicon glyphicon-ok">
+            Your Account is Active Now.Enjoy!
+        </span>
+    </strong>
+</div>
+@section scripts{
+    <script>
+    function Verified() {
+        $.ajax({
+            type: "post",
+            url: "/Account/RegisterConfirm",
+            data: { 'regId': '@ViewBag.regID' },
+            success: function (msg) {
+                $("#previous").hide();
+                $("#after").show();
+                alert(msg);
+            }
+        })
+    }
+    </script>
+    }

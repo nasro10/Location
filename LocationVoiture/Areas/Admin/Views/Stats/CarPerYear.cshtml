@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "CarPerYear";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- /.panel -->
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <i class="fa fa-bar-chart-o fa-fw"></i> Number Of Cars Per Year
+    </div>
+    <div class="panel-body">
+        <div id="donut-example-2" data="@Json.Encode(Model)"></div>
+        <a href="#" class="btn btn-default btn-block">View Details</a>
+    </div>
+    <!-- /.panel-body -->
+</div>
+<!-- /.panel -->
+<!-- /.panel .chat-panel -->
+
+@section scripts{
+    <script>
+        var elem = "donut-example-2";
+        var data = JSON.parse($("#" + elem)[0].attributes["data"].nodeValue);
+        console.log(data);
+        Morris.Donut({
+            element: elem,
+            data: data
+        });
+    </script>
+    <script src="~/Scripts/morris-data.js"></script>
+    <script src="~/Scripts/raphael-min.js"></script>
+    <script src="~/Scripts/morris.js"></script>
+    <script src="~/Scripts/morris.min.js"></script>
+}
+<hr />
+

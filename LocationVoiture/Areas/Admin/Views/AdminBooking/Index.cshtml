@@ -1,0 +1,99 @@
+﻿@model IEnumerable<Location.Domain.Entities.Booking>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section class="content">
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">BookingRequests</h3>
+                </div>
+                <div class="box-body">
+                    <table id="example1" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.RentNumber)
+                                </th>
+
+                                <th>
+                                    @Html.DisplayNameFor(model => model.BookingRequestDate)
+                                </th>
+
+                                <th>
+                                    Car Owner
+                                </th>
+
+                                <th>
+                                    User
+                                </th>
+
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Car.SerialNumber)
+                                </th>
+                                <th>
+                                    Type - Model - Year
+                                </th>
+                                
+
+                                <th>State</th>
+                                <th>Actions</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RentNumber)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.BookingRequestDate)
+                                </td>
+
+                                <td>@Html.DisplayFor(modelItem => item.Car.User.Name)</td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.User.UserName)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Car.SerialNumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Car.TypeCar.Name) - @Html.DisplayFor(modelItem => item.Car.CarModel.Name) - @Html.DisplayFor(modelItem => item.Car.CreationYear.Name)
+                                </td>
+                                                      
+                                <td>@Html.DisplayFor(modelItem => item.bookingState)</td>
+                                <td>
+                                   
+                                    @Html.ActionLink("Details", "Details", new { id = item.BookingID }) 
+                                   
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts{
+    <script>
+        $(function () {
+            $('#example1').DataTable()
+        })
+    </script>
+    }

@@ -1,0 +1,47 @@
+﻿@model Location.Domain.Entities.TypeCar
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dd>
+
+            <img src="~/Uploads/@Html.DisplayFor(model =>model.Picture)"
+                 class="thumbnail"
+                 style=" width:48px;height:48px" />
+
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Active)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TypeID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+@section scripts{}

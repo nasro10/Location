@@ -1,0 +1,110 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_ClientLayout.cshtml";
+}
+<script src='https://api.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.css' rel='stylesheet' />
+<script type="text/javascript" src="https://pubnub.github.io/eon/v/eon/1.0.0/eon.js"></script>
+<link type="text/css" rel="stylesheet" href="https://pubnub.github.io/eon/v/eon/1.0.0/eon.css" />
+
+
+<div id='map' style='width: 800px; height: 600px;'></div>
+@section scripts{
+
+
+
+    <script>
+        /*mapboxgl.accessToken = 'pk.eyJ1IjoibmFzcm9hemUiLCJhIjoiY2p3cnlrNjJyMDQxczQ4cW81MTRmenMzZCJ9.nv5L-VGlq51K5kLcnT0W3g';
+        var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [9.8674173, 37.288032],
+        zoom:9
+        });
+
+        var pubnub = new PubNub({
+        publishKey: 'demo',
+        subscribeKey: 'demo'
+                });
+
+eon.map({
+      pubnub: pubnub,
+      id: 'map',
+      mbToken: 'pk.eyJ1IjoibmFzcm9hemUiLCJhIjoiY2p3cnoyNzhsMDI5ZzQ5bXRodTF6cW9jaCJ9.ugT1A9YPbRKHR4hD0z-wqA',
+      mbId: 'mapbox.mapbox-streets-v8',
+      channels: ['eon-map']
+});
+
+
+setInterval(function(){
+
+      pubnub.publish({
+        channel:  'eon-map',
+        message:
+          [
+            {"latlng":[31,-99]},
+            {"latlng":[32,-100]},
+            {"latlng":[33,-101]},
+            {"latlng":[35,-102]}
+          ]
+      });
+
+}, 1000);*/
+    </script>
+
+    <script>
+        function getNonZeroRandomNumber() {
+            var random = Math.floor(Math.random() * 100) - 99;
+            if (random == 0) return getNonZeroRandomNumber();
+            return random;
+        }
+    </script>
+    <script>
+
+        var pubnub = new PubNub({
+            publishKey: 'pub-c-6446e035-227c-416d-983d-43fa0977a9ba',
+            subscribeKey: 'sub-c-d49abb30-8c5f-11e9-934c-e65111950ecf'
+        });
+
+        var channel = 'pubnub-mapbox' + getNonZeroRandomNumber();
+
+        eon.map({
+            pubnub: pubnub,
+            id: 'map',
+            mbToken: 'pk.eyJ1IjoiaWFuamVubmluZ3MiLCJhIjoiZExwb0p5WSJ9.XLi48h-NOyJOCJuu1-h-Jg',
+            mbId: 'ianjennings.l896mh2e',
+            channels: [channel],
+            connect: connect,
+            options: {
+                zoomAnimation: false,
+            },
+        });
+
+        function connect() {
+
+            var point = {
+                latlng: [37.289034, 9.853552]
+            };
+
+            setInterval(function () {
+
+                var new_point = JSON.parse(JSON.stringify(point));
+
+                new_point.latlng = [
+                    new_point.latlng[0] + (getNonZeroRandomNumber() * 0.0003),
+                    new_point.latlng[1] + (getNonZeroRandomNumber() * 0.0005)
+                ];
+
+                pubnub.publish({
+                    channel: channel,
+                    message: [new_point]
+                });
+
+            }, 4000);
+
+        };
+
+    </script>
+
+}

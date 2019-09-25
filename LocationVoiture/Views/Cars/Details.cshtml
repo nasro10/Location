@@ -1,0 +1,198 @@
+﻿@model Location.Domain.Entities.Car
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Det.cshtml";
+}
+
+
+<link href="~/Content/rateit.css" rel="stylesheet" />
+<!-- Single Car Start -->
+<div class="col-lg-4">
+    <div class="sidebar-content-wrap m-t-50">
+
+        <div class="single-sidebar">
+            <h3>Car Owner: @Model.User.UserName</h3>
+
+            <div class="sidebar-body">
+                <ul class="recent-tips">
+                    <li class="single-recent-tips">
+                        <div class="recent-tip-thum">
+                            <img src="~/Uploads/@Model.User.Picture" class="rounded-circle" alt="Cinque Terre">
+                        </div>
+
+                    </li>
+
+                </ul>
+                <div class="review">
+                    <p>The OverAll Rating: </p>
+                    <div class="rateit" data-rateit-value="@ViewBag.note1" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+
+                </div>
+              
+
+                
+            </div>
+        </div>
+
+        <div class="single-sidebar">
+            <h3>For More Informations</h3>
+
+            <div class="sidebar-body">
+                <p><i class="fa fa-mobile"></i>@Model.User.phone</p>
+                <p><i class="fa fa-envelope-square"></i>@Model.User.Email</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="col-lg-8">
+    <div class="car-list-content m-t-50">
+        <div class="single-car-wrap">
+            <div class="row">
+                <!-- Single Car Thumbnail -->
+                <div class="col-lg-5">
+                    <div class="car-preview-crousel">
+                        @foreach (var item in Model.Images)
+                        {
+                            <div class="single-car-preview">
+
+                                <img src="~/Uploads/@Html.DisplayFor(modelItem => item.FileName)" alt="JSOFT">
+
+
+                            </div>
+                        }
+
+                    </div>
+                </div>
+                <!-- Single Car Thumbnail -->
+                <!-- Single Car Info -->
+                <div class="col-lg-7">
+                    <div class="display-table">
+                        <div class="display-table-cell">
+                            <div class="car-list-info">
+                                <h2>@Html.DisplayFor(model => model.CarModel.Name)</h2>
+                                <h3>SerialNumber: @Html.DisplayFor(model => model.SerialNumber)</h3>
+                                <h3>Created in :  @Html.DisplayFor(model => model.CreationYear.Name)</h3>
+                                Min Price For Rent:<h5> @Html.DisplayFor(model => model.MinPriceForRent)$</h5>
+                                <p>
+                                    Description:
+                                    @Html.DisplayFor(model => model.Note)
+                                </p>
+                                @{
+                                    if (Model.Rates.Count > 0)
+                                    {
+                                        <p>
+                                            The Overall Rating for @Model.CarModel.Name is
+                                            <div class="rateit" data-rateit-value="@ViewBag.note" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+
+                                        </p>
+                                    }
+                                    else
+                                    {
+                                        <p>   Be The First To Rate @Model.CarModel.Name</p>
+                                    }
+
+                                }
+                                <p>
+                                    RateBy:   @Model.Rates.Count Persons
+                                </p>
+
+                                <div class="review">
+
+
+                                </div>
+                                <div class="clearfix"> </div>
+
+
+
+
+                                <ul class="car-info-list">
+                                    <li> @Html.DisplayFor(model => model.Gear)</li>
+                                    <li> @Html.DisplayFor(model => model.Fuel)</li>
+                                    <li> @Html.DisplayFor(model => model.seatNumber)Seats</li>
+                                </ul>
+                                @Html.ActionLink("Book it", "CreateBooking", new { id = Model.CarID }, new { @class = "btn rent-btn" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Car info -->
+            </div>
+        </div>
+
+    </div>
+</div>
+        @section scripts{
+            <script src="~/Scripts/jquery.rateit.min.js"></script>
+            <script type="text/javascript">
+       $('#products .rateit').bind('rated reset', function (e) {
+         var ri = $(this);
+
+         var value = ri.rateit('value');
+         var CarID = ri.data('carid');
+
+         ri.rateit('readonly', true);
+
+         $.ajax({
+             url: '@Url.Action("Rate","Cars")',
+             data: { id: CarID, value: value },
+             type: 'POST',
+             success: function (data) {
+                 $('#response').append('<li>' + 'Thanks for rating !' + '</li>');
+                 $('#note').html("<br/> <li>New Global Rate :  "+data +'</li>');
+
+             },
+             error: function (jxhr, msg, err) {
+                 $('#response').append('<li style="color:red">' + msg + '</li>');
+             }
+        });
+    });
+            </script>
+
+            @*<script  type="text/javascript">
+                    function SetRatingsControlCallbacks(e) {
+                        var number = $("#RatingsControl a[name ='Number']");
+                        number.on('click', SetRating);
+                    }
+
+                    function SetRating(e) {
+                        var carId = $(this).data("carid");
+                        var number = $(this).data("number");
+
+                        var data = { carId: $(this).data("carid"), number: $(this).data("number") };
+
+                        $.post("@Url.Action("SetRating", "Ratings")", data)
+
+                            .done(function (response, status, jqxhr) {
+                                var url = "@Url.Action("RatingsControl", "Ratings")";
+                                $("#RatingsControl").load(url, { carId: data.carId },
+                                    function (responseText, statusText, xhr) {
+                                        switch (statusText) {
+                                            case "success":
+                                                SetRatingsControlCallbacks();
+                                                break;
+                                            default:
+                                                break;
+                                        }
+                                        if (responseText.length == 0) {
+                                            statusText: "error";
+                                        }
+                                    }
+
+                                );
+
+                            })
+                            .fail(function (jqxhr, status, error) {
+
+                            })
+                    }
+
+                    $(document).ready(SetRatingsControlCallbacks);
+
+                </script>*@
+
+        }
+
+        <!-- Single Car End -->

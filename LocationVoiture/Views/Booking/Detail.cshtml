@@ -1,0 +1,148 @@
+﻿@model Location.Domain.Entities.Booking
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Detail</h2>
+
+<div>
+    <h4>Booking</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RentNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RentNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartingFrom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartingFrom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RentType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RentType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookingRequestDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookingRequestDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookingApproveDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookingApproveDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookingRefuseDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookingRefuseDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookingDeliveredToClientDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookingDeliveredToClientDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookingFinishedbyClientDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookingFinishedbyClientDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookingConfirmedByOwnerDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookingConfirmedByOwnerDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookingConfirmedByClientDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookingConfirmedByClientDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActivationCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActivationCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Driver)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Driver)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Delivery)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Delivery)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Note)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Note)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CarId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CarId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+ 
+    @Html.ActionLink("Back to List", "Index")
+</p>
+@section scripts{}

@@ -1,0 +1,294 @@
+﻿@using Location.Domain.Entities;
+@using Location.Data;
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Dashboard</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="~/Content/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/Content/bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="~/Content/bower_components/Ionicons/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Content/dist/css/AdminLTE.min.css">
+    <!-- Data Table Design -->
+    <link rel="stylesheet" href="~/Content/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <link href="~/Content/rateit.css" rel="stylesheet">
+
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="~/Content/dist/css/skins/_all-skins.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Google Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+    <!-- Site wrapper -->
+    <div class="wrapper">
+
+        <header class="main-header">
+            <!-- Logo -->
+            <div class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><b>Dash</b></span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"><b>Admin</b>Dashboard</span>
+            </div>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <!-- Messages: style can be found in dropdown.less-->
+                        <li class="dropdown messages-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-envelope-o"></i>
+                                @*<span class="label label-success">4</span>*@
+                            </a>
+
+                        </li>
+                        <!-- Notifications: style can be found in dropdown.less -->
+                        <li class="dropdown notifications-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-bell-o"></i>
+                                @*<span class="label label-warning">10</span>*@
+                            </a>
+
+                        </li>
+
+
+                        <!-- User Account: style can be found in dropdown.less -->
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            var db = new LocationVoiture.Data.LocationContext();
+                            var CurrentUser = db.Users.Where(x => x.UserName.Equals(User.Identity.Name)).FirstOrDefault();
+                            <li class="dropdown user user-menu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+                                    @{
+                                        @*if (@CurrentUser.Picture.Length == 0)
+                                                {
+                                            <img src="~/Content/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                                                }*@
+                                        <img src="~/Uploads/@CurrentUser.Picture"
+                                             class="user-image"
+                                             alt="User Image" />
+                                    }
+                                    <span class="hidden-xs">Welcome: @User.Identity.Name</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <!-- User image -->
+                                    <li class="user-header">
+                                        @{
+                                            @*if (@CurrentUser.Picture.Length == 0)
+                                                {
+                                                    <img src="~/Content/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                                }*@
+                                            <img src="~/Uploads/@CurrentUser.Picture"
+                                                 class="img-circle"
+                                                 alt="User Image" />
+                                        }
+
+
+                                        <p>
+                                            @User.Identity.Name
+                                            @CurrentUser.LastName
+                                            <small>
+                                                Member Since: @CurrentUser.SignUpDate.Day - @CurrentUser.SignUpDate.Month
+                                                - @CurrentUser.SignUpDate.Year
+                                            </small>
+                                        </p>
+                                    </li>
+                                    <!-- Menu Body -->
+                                    <!-- Menu Footer-->
+                                    <li class="user-footer">
+                                        <div class="pull-left">
+                                            <a href="~/Admin/User/Edit/@CurrentUser.UserID" class="btn btn-default btn-flat">Profile</a>
+                                        </div>
+                                        <div class="pull-right">
+                                            <button onclick="location.href='@Url.Action("Logout","Account")'"
+                                                    class="btn btn-default">
+                                                signout
+                                            </button>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        }
+                        <!-- Control Sidebar Toggle Button -->
+
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <!-- =============================================== -->
+        <!-- Left side column. contains the sidebar -->
+        <aside class="main-sidebar">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    var db = new LocationVoiture.Data.LocationContext();
+                    var CurrentUser = db.Users.Where(x => x.UserName.Equals(User.Identity.Name)).FirstOrDefault();
+                    <!-- Sidebar user panel -->
+                    <div class="user-panel">
+                        <div class="pull-left image">
+
+                            @{
+                                @*if (@CurrentUser.Picture.Length == 0)
+                                    {
+                                        <img src="@Url.Content("~/Content/dist/img/user2-160x160.jpg")" class="img-circle" alt="User Image">
+                                    }*@
+                                <img src="~/Uploads/@CurrentUser.Picture"
+                                     class="img-circle"
+                                     alt="User Image" />
+                            }
+
+                        </div>
+                        <div class="pull-left info">
+
+                            <p>@User.Identity.Name</p>
+                            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                        </div>
+                    </div>
+                }
+                <!-- sidebar menu: : style can be found in sidebar.less -->
+                    <ul class="sidebar-menu" data-widget="tree">
+                        <li class="header">MAIN NAVIGATION</li>
+                        <li>
+
+                            <a href="~/Admin/Stats/Index">
+                                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+
+                            </a>
+
+                        </li>
+                        @if (User.IsInRole("SuperAdmin"))
+                        {
+                            <li>
+                                <a href="~/Admin/Admin/ListAdmin">
+                                    <i class="fa fa-users"></i> <span>Admins</span>
+                                </a>
+                            </li>
+                        }
+
+                        <li>
+                            <a href="~/Admin/Car/index">
+                                <i class="fa fa-automobile"></i> <span>Cars</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="~/Admin/User/index">
+                                <i class="fa fa-users"></i> <span>Clients</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="~/Admin/AdminBooking/Index">
+                                <i class="fa fa-calendar"></i> <span>Booking Requests</span>
+                            </a>
+                        </li>
+        
+                        <li>
+                            <a href="">
+                                <i class="fa fa-bell-o"></i> <span>Notifications</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="~/Admin/Claim/Index">
+                                <i class="fa fa-commenting-o"></i> <span>Claims</span>
+                            </a>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-edit"></i>
+                                <span>Settings</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-right pull-left"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="~/Admin/Category/index"><i class="fa fa-circle-o"></i> Categories</a></li>
+                                <li><a href="~/Admin/SubCategory/index"><i class="fa fa-circle-o"></i> SubCategories</a></li>
+                                <li><a href="~/Admin/TypeCar/Index"><i class="fa fa-circle-o"></i> Types</a></li>
+                                <li><a href="~/Admin/CarModel/index"><i class="fa fa-circle-o"></i> Models</a></li>
+                                <li><a href="~/Admin/Admin/Countries"><i class="fa fa-circle-o"></i> Countries</a></li>
+                                <li><a href="~/Admin/Admin/States"><i class="fa fa-circle-o"></i> States</a></li>
+                                <li><a href="~/Admin/CreationYear/index"><i class="fa fa-circle-o"></i> Creation Year</a></li>
+                            </ul>
+                        </li>
+
+
+
+
+                    </ul>
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- =============================================== -->
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            @RenderBody()
+        </div>
+        <!-- /.content-wrapper -->
+
+        <footer class="main-footer">
+
+            <strong>Copyright &copy; @DateTime.Now.Year .</strong> All rights
+            reserved.
+        </footer>
+
+
+    </div>
+    <script src="~/Content/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="~/Content/bower_components/select2/dist/js/select2.full.min.js"></script>
+
+    <!-- Bootstrap 3.3.7 -->
+    <script src="~/Content/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- SlimScroll -->
+    <script src="~/Content/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="~/Content/bower_components/fastclick/lib/fastclick.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Content/dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="~/Content/dist/js/demo.js"></script>
+    <script src="~/Content/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+    <!--Icheck-->
+    <script src="~/Scripts/morris-data.js"></script>
+    <script src="~/Scripts/raphael-min.js"></script>
+    <script src="~/Scripts/morris.js"></script>
+    <script src="~/Scripts/morris.min.js"></script>
+    <script src="~/Scripts/jquery.rateit.js"></script>
+    <script src="~/Scripts/jquery.rateit.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.sidebar-menu').tree()
+        })
+    </script>
+    @RenderSection("scripts")
+
+</body>
+</html>

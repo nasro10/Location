@@ -1,0 +1,75 @@
+﻿@model IPagedList<Location.Domain.Entities.Car>
+@using PagedList;
+@using PagedList.Mvc;
+@{
+    /**/
+
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_HomePage.cshtml";
+}
+
+@section order
+    {
+    @using (Html.BeginForm())
+    {
+        <input class="btn sorting" type="submit" value="Sort BY : " />
+        <select id="sortOrder" name="sortOrder" class="custom-select">
+
+            <option value="bypricePerhour">price per hour</option>
+            <option value="bypricePerday"> price per day</option>
+            <option value="bypricePermonth">price per day month</option>
+            <option value="byname">Model</option>
+
+        </select>
+
+
+    }
+}
+@foreach (var item in Model)
+{
+
+    <!-- Single Popular Car Start -->
+    <!-- Single Popular Car End -->
+    <div class="col-lg-4 col-md-6 @item.SubCategory.Category.Name">
+        <div class="single-popular-car">
+            <div class="car-preview-crousel">
+                @foreach (var s in item.Images)
+                {
+                    <a class="car-hover" href="~/Content/assets/img/car/@Html.DisplayFor(modelds => s.FileName)">
+                        <img src="~/Content/assets/img/car/@Html.DisplayFor(modelds => s.FileName)" alt="JSOFT">
+                    </a>
+                }
+            </div>
+
+            <div class="p-car-content">
+
+                <h3>
+                    <a href="#">@Html.DisplayFor(modelItem => item.CarModel.Name)</a>
+                    <span class="price"><i class="fa fa-tag"></i> @Html.DisplayFor(modelItem => item.PricePerDay)/Day</span>
+                </h3>
+
+                <h5>@Html.DisplayFor(modelItem => item.TypeCar.Name)</h5>
+
+                <div class="p-car-feature">
+                    <a href="">@Html.DisplayFor(modelItem => item.CreationYear.Name)</a>
+                    <a href="">@Html.DisplayFor(modelItem => item.Gear)</a>
+                    <a href="">@Html.DisplayFor(modelItem => item.Fuel)</a>
+                    <a href="">@Html.DisplayFor(modelItem => item.seatNumber)Seats</a>
+
+                </div>
+                <a href="~/Cars/Details/@item.CarID" class="rent-btn">Book It</a>
+            </div>
+        </div>
+
+    </div>
+
+}
+
+<ul class="pagination">
+    <li class="page-item">
+        @Html.PagedListPager(Model, page => Url.Action("CarCat", new { page, @class = "page-link" }))
+    </li>
+
+</ul>
+
+

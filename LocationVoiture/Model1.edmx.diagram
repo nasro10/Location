@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f8ed8428d7594a91b1f229bb97202bfd" Name="Diagram1">
+        <EntityTypeShape EntityType="RentDBModel.C__MigrationHistory" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentDBModel.Bookings" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentDBModel.CarModels" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentDBModel.Cars" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentDBModel.Categories" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentDBModel.Countries" Width="1.5" PointX="0.75" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentDBModel.CreationYears" Width="1.5" PointX="0.75" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentDBModel.Images" Width="1.5" PointX="5.25" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentDBModel.Invoices" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentDBModel.Notifications" Width="1.5" PointX="5.25" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentDBModel.Rates" Width="1.5" PointX="8.25" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentDBModel.Roles" Width="1.5" PointX="0.75" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentDBModel.States" Width="1.5" PointX="3" PointY="22.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentDBModel.SubCategories" Width="1.5" PointX="3" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentDBModel.TypeCars" Width="1.5" PointX="0.75" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentDBModel.Users" Width="1.5" PointX="3" PointY="16.375" IsExpanded="true" />
+        <AssociationConnector Association="RentDBModel.FK_dbo_Bookings_dbo_Cars_Car_CarID" ManuallyRouted="false" />
+        <AssociationConnector Association="RentDBModel.FK_dbo_Bookings_dbo_Invoices_Invoice_InvoiceID" ManuallyRouted="false" />
+        <AssociationConnector Association="RentDBModel.FK_dbo_Bookings_dbo_Users_Client_UserID" ManuallyRouted="false" />
+        <AssociationConnector Association="RentDBModel.FK_dbo_Cars_dbo_CarModels_CarModel_CarModelID" ManuallyRouted="false" />
+        <AssociationConnector Association="RentDBModel.FK_dbo_Cars_dbo_Categories_Category_CategoryID" ManuallyRouted="false" />
+        <AssociationConnector Association="RentDBModel.FK_dbo_Cars_dbo_CreationYears_CreationYear_CreationYearID" ManuallyRouted="false" />
+        <AssociationConnector Association="RentDBModel.FK_dbo_Cars_dbo_TypeCars_TypeCar_TypeID" ManuallyRouted="false" />
+        <AssociationConnector Association="RentDBModel.FK_dbo_Images_dbo_Cars_Car_CarID" ManuallyRouted="false" />
+        <AssociationConnector Association="RentDBModel.FK_dbo_Rates_dbo_Cars_Car_CarID" ManuallyRouted="false" />
+        <AssociationConnector Association="RentDBModel.FK_dbo_SubCategories_dbo_Categories_Category_CategoryID" ManuallyRouted="false" />
+        <AssociationConnector Association="RentDBModel.FK_dbo_States_dbo_Countries_Country_CountryID" ManuallyRouted="false" />
+        <AssociationConnector Association="RentDBModel.FK_dbo_Users_dbo_Countries_Country_CountryID" ManuallyRouted="false" />
+        <AssociationConnector Association="RentDBModel.FK_dbo_Notifications_dbo_Users_Admin_UserID" ManuallyRouted="false" />
+        <AssociationConnector Association="RentDBModel.FK_dbo_Rates_dbo_Users_Client_UserID" ManuallyRouted="false" />
+        <AssociationConnector Association="RentDBModel.RoleUsers" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
